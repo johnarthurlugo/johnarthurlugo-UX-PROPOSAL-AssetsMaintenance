@@ -1,0 +1,2150 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Maintenance Profiles Ux</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Maintenance Profiles Ux" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Maintenance Profiles Ux&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;style&gt;
+  #novacor-maintenance-ux {
+    --nv-bg: light-dark(#eef1f5, #111827);
+    --nv-shell: light-dark(#ffffff, #18212f);
+    --nv-sidebar: light-dark(#f7f9fc, #f7f9fc);
+    --nv-sidebar-text: light-dark(#263342, #263342);
+    --nv-sidebar-muted: light-dark(#5c6b7d, #5c6b7d);
+    --nv-panel: light-dark(#ffffff, #1f2937);
+    --nv-panel-soft: light-dark(#f7f9fb, #253245);
+    --nv-text: light-dark(#263342, #f3f4f6);
+    --nv-muted: light-dark(#697787, #b4c0ce);
+    --nv-line: light-dark(#dfe5eb, #3a4657);
+    --nv-blue: light-dark(#1775d1, #65a9ea);
+    --nv-blue-soft: light-dark(#e8f3fd, #173a5c);
+    --nv-green: light-dark(#188657, #5ccf9b);
+    --nv-green-soft: light-dark(#e5f5ee, #173d31);
+    --nv-orange: light-dark(#b76310, #f4ad62);
+    --nv-orange-soft: light-dark(#fff0df, #51331a);
+    --nv-red: light-dark(#b73535, #f07b7b);
+    --nv-red-soft: light-dark(#fdeaea, #512525);
+    --nv-purple: light-dark(#7454b6, #b69cf0);
+    color: var(--nv-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;
+    width: 100%;
+  }
+
+  #novacor-maintenance-ux * { box-sizing: border-box; }
+  #novacor-maintenance-ux button,
+  #novacor-maintenance-ux input,
+  #novacor-maintenance-ux select,
+  #novacor-maintenance-ux textarea { font: inherit; }
+
+  #novacor-maintenance-ux .nv-window {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    min-height: 680px;
+    background: var(--nv-shell);
+    overflow: hidden;
+  }
+
+  #novacor-maintenance-ux .nv-sidebar {
+    background: var(--nv-sidebar);
+    color: var(--nv-sidebar-text);
+    padding: 22px 14px;
+  }
+
+  #novacor-maintenance-ux .nv-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    margin: 0 2px 18px;
+    padding: 8px 10px;
+  }
+
+  #novacor-maintenance-ux .nv-brand-logo { display: block; width: 150px; max-width: 100%; height: auto; }
+  #novacor-maintenance-ux .nv-success-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--nv-green); color: #fff; }
+
+  #novacor-maintenance-ux .nv-nav-label {
+    margin: 18px 10px 8px;
+    color: var(--nv-sidebar-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  #novacor-maintenance-ux .nv-nav-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    margin: 2px 0;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--nv-sidebar-text);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-nav-button:hover,
+  #novacor-maintenance-ux .nv-nav-button[aria-current=&quot;page&quot;] {
+    background: color-mix(in srgb, var(--nv-blue) 25%, transparent);
+  }
+
+  #novacor-maintenance-ux .nv-nav-button svg { width: 17px; height: 17px; }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub { min-height: 36px; padding-left: 35px; color: var(--nv-sidebar-muted); }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub svg { width: 14px; height: 14px; }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub[aria-current=&quot;page&quot;] { color: var(--nv-sidebar-text); }
+  #novacor-maintenance-ux .nv-nav-divider { height: 1px; margin: 13px 8px; background: color-mix(in srgb, var(--nv-sidebar-muted) 30%, transparent); }
+
+  #novacor-maintenance-ux .nv-main { min-width: 0; background: var(--nv-bg); }
+
+  #novacor-maintenance-ux .nv-topbar {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--nv-shell);
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-topbar-title { font-weight: 500; }
+  #novacor-maintenance-ux .nv-user { display: flex; align-items: center; gap: 9px; color: var(--nv-muted); }
+  #novacor-maintenance-ux .nv-avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--nv-purple);
+    color: #fff;
+    font-size: 12px;
+  }
+
+  #novacor-maintenance-ux .nv-content { padding: 22px 24px 30px; }
+  #novacor-maintenance-ux .nv-page[hidden] { display: none !important; }
+
+  #novacor-maintenance-ux .nv-page-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  #novacor-maintenance-ux .nv-page-head h1,
+  #novacor-maintenance-ux .nv-section-head h2 { margin: 0; font-size: 21px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-page-head p { margin: 5px 0 0; color: var(--nv-muted); font-size: 14px; }
+
+  #novacor-maintenance-ux .nv-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  #novacor-maintenance-ux .nv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: var(--nv-panel);
+    color: var(--nv-text);
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-button-primary { background: var(--nv-blue); border-color: var(--nv-blue); color: #fff; }
+  #novacor-maintenance-ux .nv-button-quiet { background: transparent; }
+  #novacor-maintenance-ux .nv-button-danger { color: var(--nv-red); }
+  #novacor-maintenance-ux .nv-button svg { width: 16px; height: 16px; }
+
+  #novacor-maintenance-ux .nv-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  #novacor-maintenance-ux .nv-metric {
+    background: var(--nv-panel);
+    border: 1px solid var(--nv-line);
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  #novacor-maintenance-ux .nv-metric-label { color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-metric-value { margin-top: 7px; font-size: 25px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-metric-note { margin-top: 5px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-panel {
+    background: var(--nv-panel);
+    border: 1px solid var(--nv-line);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  #novacor-maintenance-ux .nv-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  #novacor-maintenance-ux .nv-section-head h2 { font-size: 16px; }
+  #novacor-maintenance-ux .nv-filter-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; }
+
+  #novacor-maintenance-ux .nv-input,
+  #novacor-maintenance-ux .nv-select,
+  #novacor-maintenance-ux .nv-textarea {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 10px;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: var(--nv-shell);
+    color: var(--nv-text);
+  }
+
+  #novacor-maintenance-ux .nv-filter-row .nv-input { flex: 1 1 230px; }
+  #novacor-maintenance-ux .nv-filter-row .nv-select { flex: 0 1 160px; }
+  #novacor-maintenance-ux .nv-field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-field-note { margin-top: 5px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-table-wrap { overflow-x: auto; }
+  #novacor-maintenance-ux table { width: 100%; border-collapse: collapse; }
+  #novacor-maintenance-ux th,
+  #novacor-maintenance-ux td { padding: 12px 10px; border-bottom: 1px solid var(--nv-line); text-align: left; vertical-align: middle; }
+  #novacor-maintenance-ux th { color: var(--nv-muted); font-size: 12px; font-weight: 500; white-space: nowrap; }
+  #novacor-maintenance-ux td { font-size: 13px; }
+  #novacor-maintenance-ux tbody tr:last-child td { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-dense th,
+  #novacor-maintenance-ux .nv-dense td { padding-top: 8px; padding-bottom: 8px; }
+
+  #novacor-maintenance-ux .nv-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  #novacor-maintenance-ux .nv-status::before { content: &quot;&quot;; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  #novacor-maintenance-ux .nv-upcoming { color: var(--nv-blue); background: var(--nv-blue-soft); }
+  #novacor-maintenance-ux .nv-soon { color: var(--nv-orange); background: var(--nv-orange-soft); }
+  #novacor-maintenance-ux .nv-overdue { color: var(--nv-red); background: var(--nv-red-soft); }
+  #novacor-maintenance-ux .nv-active { color: var(--nv-green); background: var(--nv-green-soft); }
+  #novacor-maintenance-ux .nv-muted { color: var(--nv-muted); }
+  #novacor-maintenance-ux .nv-link { color: var(--nv-blue); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+
+  #novacor-maintenance-ux .nv-grid-2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr); gap: 16px; }
+  #novacor-maintenance-ux .nv-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #novacor-maintenance-ux .nv-form-grid .nv-span-2 { grid-column: 1 / -1; }
+
+  #novacor-maintenance-ux .nv-service-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.4fr) minmax(95px, .6fr) minmax(110px, .7fr) minmax(100px, .6fr) 34px;
+    gap: 8px;
+    align-items: end;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-service-row:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-service-row .nv-field label { color: var(--nv-muted); font-size: 11px; }
+  #novacor-maintenance-ux .nv-icon-button {
+    width: 34px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--nv-red);
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-icon-button svg { width: 15px; height: 15px; }
+  #novacor-maintenance-ux .nv-guidance { padding: 13px; border-left: 3px solid var(--nv-blue); background: var(--nv-blue-soft); font-size: 13px; }
+  #novacor-maintenance-ux .nv-guidance strong { display: block; margin-bottom: 4px; }
+  #novacor-maintenance-ux .nv-bullets { margin: 10px 0 0; padding-left: 18px; color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-bullets li { margin: 7px 0; }
+
+  #novacor-maintenance-ux .nv-stepper { display: flex; align-items: center; margin-bottom: 20px; }
+  #novacor-maintenance-ux .nv-step { display: flex; align-items: center; gap: 8px; color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-step-number { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: var(--nv-panel-soft); }
+  #novacor-maintenance-ux .nv-step.is-active { color: var(--nv-blue); font-weight: 500; }
+  #novacor-maintenance-ux .nv-step.is-active .nv-step-number,
+  #novacor-maintenance-ux .nv-step.is-done .nv-step-number { background: var(--nv-blue); color: #fff; }
+  #novacor-maintenance-ux .nv-step-line { flex: 1; height: 1px; margin: 0 10px; background: var(--nv-line); }
+  #novacor-maintenance-ux .nv-check { width: 17px; height: 17px; accent-color: var(--nv-blue); }
+
+  #novacor-maintenance-ux .nv-selection-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 13px;
+    margin-bottom: 12px;
+    background: var(--nv-blue-soft);
+    color: var(--nv-text);
+  }
+
+  #novacor-maintenance-ux .nv-bulk-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-reading { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  #novacor-maintenance-ux .nv-reading-stale { color: var(--nv-orange); font-size: 11px; display: block; margin-top: 2px; }
+  #novacor-maintenance-ux .nv-footer-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
+
+  #novacor-maintenance-ux .nv-review-list { display: grid; gap: 9px; }
+  #novacor-maintenance-ux .nv-review-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--nv-line); }
+  #novacor-maintenance-ux .nv-review-row:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-review-row span { color: var(--nv-muted); font-size: 12px; display: block; margin-bottom: 4px; }
+
+  #novacor-maintenance-ux .nv-asset-head { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+  #novacor-maintenance-ux .nv-asset-id { display: flex; gap: 13px; align-items: center; }
+  #novacor-maintenance-ux .nv-asset-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 8px; background: var(--nv-blue-soft); color: var(--nv-blue); }
+  #novacor-maintenance-ux .nv-asset-icon svg { width: 23px; height: 23px; }
+  #novacor-maintenance-ux .nv-asset-id h1 { margin: 0; font-size: 20px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-asset-id p { margin: 4px 0 0; color: var(--nv-muted); font-size: 13px; }
+
+  #novacor-maintenance-ux .nv-progress-track { height: 7px; margin-top: 8px; overflow: hidden; border-radius: 999px; background: var(--nv-panel-soft); }
+  #novacor-maintenance-ux .nv-progress-fill { height: 100%; background: var(--nv-blue); }
+  #novacor-maintenance-ux .nv-schedule-card { padding: 13px 0; border-bottom: 1px solid var(--nv-line); }
+  #novacor-maintenance-ux .nv-schedule-card:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-schedule-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  #novacor-maintenance-ux .nv-schedule-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-complete {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-complete[hidden] { display: none; }
+  #novacor-maintenance-ux .nv-success { padding: 10px 12px; margin-bottom: 12px; background: var(--nv-green-soft); color: var(--nv-green); }
+  #novacor-maintenance-ux .nv-success[hidden] { display: none; }
+
+  @media (max-width: 640px) {
+    #novacor-maintenance-ux .nv-window { grid-template-columns: 68px minmax(0, 1fr); }
+    #novacor-maintenance-ux .nv-brand-logo,
+    #novacor-maintenance-ux .nv-nav-label,
+    #novacor-maintenance-ux .nv-nav-button span { display: none; }
+    #novacor-maintenance-ux .nv-sidebar { padding-inline: 10px; }
+    #novacor-maintenance-ux .nv-brand,
+    #novacor-maintenance-ux .nv-nav-button { justify-content: center; }
+    #novacor-maintenance-ux .nv-brand { min-height: 40px; padding: 4px; background: transparent; }
+    #novacor-maintenance-ux .nv-brand::after { content: &quot;N&quot;; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--nv-blue); color: #fff; font-weight: 500; }
+    #novacor-maintenance-ux .nv-nav-button.nv-nav-sub { padding-left: 10px; }
+    #novacor-maintenance-ux .nv-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #novacor-maintenance-ux .nv-grid-2 { grid-template-columns: 1fr; }
+    #novacor-maintenance-ux .nv-service-row { grid-template-columns: 1fr 1fr; }
+    #novacor-maintenance-ux .nv-service-row .nv-field:first-child { grid-column: 1 / -1; }
+    #novacor-maintenance-ux .nv-bulk-controls { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    #novacor-maintenance-ux .nv-window { display: block; }
+    #novacor-maintenance-ux .nv-sidebar { display: flex; gap: 4px; overflow-x: auto; padding: 8px; }
+    #novacor-maintenance-ux .nv-brand,
+    #novacor-maintenance-ux .nv-nav-label { display: none; }
+    #novacor-maintenance-ux .nv-nav-button { min-width: 44px; margin: 0; }
+    #novacor-maintenance-ux .nv-topbar { padding: 0 14px; }
+    #novacor-maintenance-ux .nv-user span { display: none; }
+    #novacor-maintenance-ux .nv-content { padding: 16px 12px 24px; }
+    #novacor-maintenance-ux .nv-page-head,
+    #novacor-maintenance-ux .nv-asset-head { flex-direction: column; }
+    #novacor-maintenance-ux .nv-metrics,
+    #novacor-maintenance-ux .nv-form-grid { grid-template-columns: 1fr; }
+    #novacor-maintenance-ux .nv-form-grid .nv-span-2 { grid-column: auto; }
+    #novacor-maintenance-ux .nv-step span:last-child { display: none; }
+    #novacor-maintenance-ux .nv-review-row { grid-template-columns: 1fr; }
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;novacor-maintenance-ux&quot; aria-label=&quot;Propuesta UX para perfiles de mantenimiento&quot;&gt;
+  &lt;div class=&quot;nv-window&quot;&gt;
+    &lt;aside class=&quot;nv-sidebar&quot; aria-label=&quot;Asset navigation&quot;&gt;
+      &lt;div class=&quot;nv-brand&quot;&gt;&lt;img class=&quot;nv-brand-logo&quot; alt=&quot;Stock NovaCor&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAABQCAYAAABLT6p5AAAEsmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgdGlmZjpJbWFnZUxlbmd0aD0iODAiCiAgIHRpZmY6SW1hZ2VXaWR0aD0iMTk0IgogICB0aWZmOlJlc29sdXRpb25Vbml0PSIyIgogICB0aWZmOlhSZXNvbHV0aW9uPSI5Ni8xIgogICB0aWZmOllSZXNvbHV0aW9uPSI5Ni8xIgogICBleGlmOlBpeGVsWERpbWVuc2lvbj0iMTk0IgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iODAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIKICAgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIgogICB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0w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&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;nv-nav-label&quot;&gt;Assets&lt;/div&gt;
+      &lt;button class=&quot;nv-nav-button&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;layout-dashboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Asset board&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;list&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Asset list&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button&quot; type=&quot;button&quot; data-page-target=&quot;movement&quot;&gt;&lt;i data-lucide=&quot;arrow-left-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Asset Movement&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;map-pin&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Locations&lt;/span&gt;&lt;/button&gt;
+      &lt;div class=&quot;nv-nav-divider&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;nv-nav-label&quot;&gt;Maintenance&lt;/div&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;overview&quot; aria-current=&quot;page&quot;&gt;&lt;i data-lucide=&quot;gauge&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Overview&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;profiles&quot;&gt;&lt;i data-lucide=&quot;layers-3&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Profiles&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;builder&quot;&gt;&lt;i data-lucide=&quot;list-plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Profile builder&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;assign&quot;&gt;&lt;i data-lucide=&quot;link-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Assign profile&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;individual&quot;&gt;&lt;i data-lucide=&quot;wrench&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Assign maintenance&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;nv-nav-button nv-nav-sub&quot; type=&quot;button&quot; data-page-target=&quot;asset&quot;&gt;&lt;i data-lucide=&quot;truck&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Asset schedule&lt;/span&gt;&lt;/button&gt;
+    &lt;/aside&gt;
+
+    &lt;main class=&quot;nv-main&quot;&gt;
+      &lt;header class=&quot;nv-topbar&quot;&gt;
+        &lt;div class=&quot;nv-topbar-title&quot; id=&quot;nv-topbar-title&quot;&gt;Maintenance overview&lt;/div&gt;
+        &lt;div class=&quot;nv-user&quot;&gt;&lt;span&gt;Patricia Higgins&lt;/span&gt;&lt;span class=&quot;nv-avatar&quot;&gt;PH&lt;/span&gt;&lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;nv-content&quot;&gt;
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;movement&quot; hidden&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;
+            &lt;div&gt;&lt;h1&gt;Asset Movement&lt;/h1&gt;&lt;p&gt;Transfer assets between warehouses, projects and other authorized locations.&lt;/p&gt;&lt;/div&gt;
+            &lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;New movement&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-metrics&quot;&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;In transit&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Awaiting delivery confirmation&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Requested&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Pending authorization&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Completed today&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Across 4 locations&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Need attention&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot; style=&quot;color:var(--nv-orange)&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Reading or receipt missing&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-panel&quot;&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Recent movements&lt;/h2&gt;&lt;button class=&quot;nv-button nv-button-quiet&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;download&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Export&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-filter-row&quot;&gt;&lt;input class=&quot;nv-input&quot; aria-label=&quot;Search movements&quot; placeholder=&quot;Search equipment, project or location&quot;&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Movement status&quot;&gt;&lt;option&gt;All statuses&lt;/option&gt;&lt;option&gt;Requested&lt;/option&gt;&lt;option&gt;In transit&lt;/option&gt;&lt;option&gt;Completed&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Movement&lt;/th&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;From&lt;/th&gt;&lt;th&gt;To&lt;/th&gt;&lt;th&gt;Requested by&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;MV-240921-018&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Sep 21, 2026&lt;/span&gt;&lt;/td&gt;&lt;td&gt;BM-1042 · Ford F-250&lt;/td&gt;&lt;td&gt;Main warehouse&lt;/td&gt;&lt;td&gt;Project 2407&lt;/td&gt;&lt;td&gt;Patricia Higgins&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-soon&quot;&gt;In transit&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;View&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;MV-240921-017&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Sep 21, 2026&lt;/span&gt;&lt;/td&gt;&lt;td&gt;EQ-208 · CAT 320&lt;/td&gt;&lt;td&gt;Project 2398&lt;/td&gt;&lt;td&gt;Service yard&lt;/td&gt;&lt;td&gt;Carlos Mendoza&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-upcoming&quot;&gt;Requested&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;Review&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;MV-240921-016&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Sep 21, 2026&lt;/span&gt;&lt;/td&gt;&lt;td&gt;BM-1098 · Silverado&lt;/td&gt;&lt;td&gt;Project 2401&lt;/td&gt;&lt;td&gt;Main warehouse&lt;/td&gt;&lt;td&gt;Duncan Ross&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-active&quot;&gt;Completed&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;View&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;overview&quot;&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;
+            &lt;div&gt;&lt;h1&gt;Maintenance overview&lt;/h1&gt;&lt;p&gt;Maintenance status based on each asset’s latest meter reading.&lt;/p&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;profiles&quot;&gt;&lt;i data-lucide=&quot;layers-3&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Profiles&lt;/button&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;assign&quot;&gt;&lt;i data-lucide=&quot;link-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Assign profile&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-page-target=&quot;individual&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Assign maintenance&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-metrics&quot;&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Overdue&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot; style=&quot;color:var(--nv-red)&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Requires attention&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Due soon&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot; style=&quot;color:var(--nv-orange)&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Inside warning threshold&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Upcoming&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Scheduled normally&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Without a profile&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Eligible assets&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-panel&quot;&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Maintenance queue&lt;/h2&gt;&lt;button class=&quot;nv-button nv-button-quiet&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;download&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Export&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-filter-row&quot;&gt;&lt;input class=&quot;nv-input&quot; aria-label=&quot;Search assets&quot; placeholder=&quot;Search equipment, make or model&quot;&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Status&quot;&gt;&lt;option&gt;All statuses&lt;/option&gt;&lt;option&gt;Overdue&lt;/option&gt;&lt;option&gt;Due soon&lt;/option&gt;&lt;option&gt;Upcoming&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Location&quot;&gt;&lt;option&gt;All locations&lt;/option&gt;&lt;option&gt;Warehouse&lt;/option&gt;&lt;option&gt;Project 2407&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Maintenance&lt;/th&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th&gt;Current meter&lt;/th&gt;&lt;th&gt;Due at&lt;/th&gt;&lt;th&gt;Remaining&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;button class=&quot;nv-link&quot; type=&quot;button&quot; data-page-target=&quot;asset&quot;&gt;&lt;strong&gt;BM-1042&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Ford F-250&lt;/span&gt;&lt;/button&gt;&lt;/td&gt;&lt;td&gt;Oil &amp;amp; filter change&lt;/td&gt;&lt;td&gt;Standard pickup profile&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;45,320 mi&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;45,000 mi&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;320 mi overdue&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-overdue&quot;&gt;Overdue&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-open-complete=&quot;true&quot;&gt;Complete&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;strong&gt;EQ-208&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;CAT 320 Excavator&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Hydraulic filter replacement&lt;/td&gt;&lt;td&gt;Individual&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;2,238 hr&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;2,250 hr&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;12 hr&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-soon&quot;&gt;Due soon&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;View&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;strong&gt;BM-1098&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Chevrolet Silverado&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Tire rotation&lt;/td&gt;&lt;td&gt;Standard pickup profile&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;31,800 mi&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;35,000 mi&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;3,200 mi&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-upcoming&quot;&gt;Upcoming&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;View&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;profiles&quot; hidden&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;
+            &lt;div&gt;&lt;h1&gt;Maintenance profiles&lt;/h1&gt;&lt;p&gt;Reusable maintenance plans for assets that share the same service cycle.&lt;/p&gt;&lt;/div&gt;
+            &lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-page-target=&quot;builder&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;New profile&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-panel&quot;&gt;
+            &lt;div class=&quot;nv-filter-row&quot;&gt;&lt;input class=&quot;nv-input&quot; aria-label=&quot;Search profiles&quot; placeholder=&quot;Search profiles&quot;&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Unit&quot;&gt;&lt;option&gt;All units&lt;/option&gt;&lt;option&gt;Mileage&lt;/option&gt;&lt;option&gt;Engine hours&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Profile status&quot;&gt;&lt;option&gt;Active profiles&lt;/option&gt;&lt;option&gt;Archived profiles&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Profile&lt;/th&gt;&lt;th&gt;Unit&lt;/th&gt;&lt;th&gt;Maintenance items&lt;/th&gt;&lt;th&gt;Assigned assets&lt;/th&gt;&lt;th&gt;Last updated&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;strong&gt;Standard pickup service&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Routine service for company pickups&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Mileage&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Sep 18, 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-active&quot;&gt;Active&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;div class=&quot;nv-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;builder&quot;&gt;Edit&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-page-target=&quot;assign&quot;&gt;Assign&lt;/button&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;strong&gt;Heavy equipment 250 hr&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Excavators and tracked equipment&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Engine hours&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;Sep 10, 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-active&quot;&gt;Active&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;div class=&quot;nv-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;Edit&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot;&gt;Assign&lt;/button&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;strong&gt;Trailer inspections&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Legacy draft&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Mileage&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;Aug 29, 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;nv-status nv-upcoming&quot;&gt;Draft&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;div class=&quot;nv-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;Edit&lt;/button&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;More&lt;/button&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;builder&quot; hidden&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;
+            &lt;div&gt;&lt;h1&gt;Profile builder&lt;/h1&gt;&lt;p&gt;Define the maintenance work and the meter interval for each item.&lt;/p&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;profiles&quot;&gt;Cancel&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-save-profile=&quot;true&quot;&gt;&lt;i data-lucide=&quot;save&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Save profile&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-success&quot; data-profile-success hidden&gt;Profile saved as a new version. Existing asset schedules remain unchanged.&lt;/div&gt;
+          &lt;div class=&quot;nv-grid-2&quot;&gt;
+            &lt;div class=&quot;nv-panel&quot;&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Profile details&lt;/h2&gt;&lt;span class=&quot;nv-status nv-active&quot;&gt;Active&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-form-grid&quot;&gt;
+                &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;profile-name&quot;&gt;Profile name&lt;/label&gt;&lt;input id=&quot;profile-name&quot; class=&quot;nv-input&quot; value=&quot;Standard pickup service&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;profile-unit&quot;&gt;Meter unit&lt;/label&gt;&lt;select id=&quot;profile-unit&quot; class=&quot;nv-select&quot;&gt;&lt;option&gt;Mileage&lt;/option&gt;&lt;option&gt;Engine hours&lt;/option&gt;&lt;/select&gt;&lt;div class=&quot;nv-field-note&quot;&gt;Only compatible assets can be assigned.&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;profile-status&quot;&gt;Status&lt;/label&gt;&lt;select id=&quot;profile-status&quot; class=&quot;nv-select&quot;&gt;&lt;option&gt;Active&lt;/option&gt;&lt;option&gt;Draft&lt;/option&gt;&lt;option&gt;Archived&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;profile-description&quot;&gt;Description&lt;/label&gt;&lt;textarea id=&quot;profile-description&quot; class=&quot;nv-textarea&quot; rows=&quot;2&quot;&gt;Routine maintenance cycle for gasoline and diesel pickups.&lt;/textarea&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;hr&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Maintenance items&lt;/h2&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-add-service=&quot;true&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Add maintenance&lt;/button&gt;&lt;/div&gt;
+              &lt;div data-services-list&gt;
+                &lt;div class=&quot;nv-service-row&quot;&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Maintenance&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Oil &amp;amp; filter change&lt;/option&gt;&lt;option&gt;Tire rotation&lt;/option&gt;&lt;option&gt;General inspection&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Every&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;5,000&quot;&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Unit&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Miles&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Warn before&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;500&quot;&gt;&lt;/div&gt;
+                  &lt;button class=&quot;nv-icon-button&quot; type=&quot;button&quot; aria-label=&quot;Remove maintenance&quot;&gt;&lt;i data-lucide=&quot;trash-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;nv-service-row&quot;&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Maintenance&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Tire rotation&lt;/option&gt;&lt;option&gt;Oil &amp;amp; filter change&lt;/option&gt;&lt;option&gt;General inspection&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Every&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;7,500&quot;&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Unit&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Miles&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Warn before&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;500&quot;&gt;&lt;/div&gt;
+                  &lt;button class=&quot;nv-icon-button&quot; type=&quot;button&quot; aria-label=&quot;Remove maintenance&quot;&gt;&lt;i data-lucide=&quot;trash-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;nv-service-row&quot;&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Maintenance&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;General inspection&lt;/option&gt;&lt;option&gt;Oil &amp;amp; filter change&lt;/option&gt;&lt;option&gt;Tire rotation&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Every&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;10,000&quot;&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Unit&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Miles&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Warn before&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;1,000&quot;&gt;&lt;/div&gt;
+                  &lt;button class=&quot;nv-icon-button&quot; type=&quot;button&quot; aria-label=&quot;Remove maintenance&quot;&gt;&lt;i data-lucide=&quot;trash-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;aside class=&quot;nv-panel&quot; data-guidance-panel&gt;
+              &lt;div class=&quot;nv-guidance&quot;&gt;&lt;strong&gt;Version behavior&lt;/strong&gt;Saving changes creates a new profile version. Active asset schedules keep their current rules until an administrator chooses to update them.&lt;/div&gt;
+              &lt;ul class=&quot;nv-bullets&quot;&gt;&lt;li&gt;A profile uses one meter unit.&lt;/li&gt;&lt;li&gt;Intervals must be greater than the warning threshold.&lt;/li&gt;&lt;li&gt;Archived maintenance catalog items remain visible in historical records.&lt;/li&gt;&lt;li&gt;Duplicate maintenance items are prevented.&lt;/li&gt;&lt;/ul&gt;
+            &lt;/aside&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;individual&quot; hidden&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;
+            &lt;div&gt;&lt;h1&gt;Assign maintenance&lt;/h1&gt;&lt;p&gt;Schedule one maintenance without creating or changing a profile.&lt;/p&gt;&lt;/div&gt;
+            &lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;overview&quot;&gt;Back to overview&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-success&quot; data-individual-success hidden&gt;Maintenance assigned. It now appears in the maintenance queue and on each selected asset.&lt;/div&gt;
+          &lt;div class=&quot;nv-grid-2&quot;&gt;
+            &lt;div class=&quot;nv-panel&quot;&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Maintenance details&lt;/h2&gt;&lt;span class=&quot;nv-status nv-upcoming&quot;&gt;Individual&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-form-grid&quot;&gt;
+                &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;individual-service&quot;&gt;Maintenance&lt;/label&gt;&lt;select id=&quot;individual-service&quot; class=&quot;nv-select&quot;&gt;&lt;option&gt;Hydraulic filter replacement&lt;/option&gt;&lt;option&gt;Oil &amp;amp; filter change&lt;/option&gt;&lt;option&gt;Brake inspection&lt;/option&gt;&lt;option&gt;General inspection&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;individual-unit&quot;&gt;Meter unit&lt;/label&gt;&lt;select id=&quot;individual-unit&quot; class=&quot;nv-select&quot;&gt;&lt;option&gt;Engine hours&lt;/option&gt;&lt;option&gt;Mileage&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;individual-every&quot;&gt;Repeat every&lt;/label&gt;&lt;input id=&quot;individual-every&quot; class=&quot;nv-input&quot; type=&quot;number&quot; min=&quot;1&quot; value=&quot;250&quot;&gt;&lt;div class=&quot;nv-field-note&quot;&gt;Hours after each completion&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;individual-warning&quot;&gt;Warn before&lt;/label&gt;&lt;input id=&quot;individual-warning&quot; class=&quot;nv-input&quot; type=&quot;number&quot; min=&quot;0&quot; value=&quot;25&quot;&gt;&lt;div class=&quot;nv-field-note&quot;&gt;Hours before the due reading&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;individual-notes&quot;&gt;Instructions&lt;/label&gt;&lt;textarea id=&quot;individual-notes&quot; class=&quot;nv-textarea&quot; rows=&quot;2&quot; placeholder=&quot;Optional work instructions&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;aside class=&quot;nv-panel&quot;&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Compatible assets&lt;/h2&gt;&lt;span class=&quot;nv-muted&quot;&gt;Engine hours&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Current meter&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; aria-label=&quot;Select EQ-208&quot; checked&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;EQ-208&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;CAT 320 Excavator&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;2,238 hr&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; aria-label=&quot;Select EQ-214&quot; checked&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;EQ-214&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;CAT 315 Excavator&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;1,780 hr&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+            &lt;/aside&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-panel&quot; style=&quot;margin-top:16px&quot;&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Starting point for each asset&lt;/h2&gt;&lt;span class=&quot;nv-muted&quot;&gt;Individual readings&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Start method&lt;/th&gt;&lt;th&gt;Reading&lt;/th&gt;&lt;th&gt;First due at&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;EQ-208&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;EQ-208 start method&quot;&gt;&lt;option&gt;From current meter&lt;/option&gt;&lt;option&gt;From last maintenance&lt;/option&gt;&lt;option&gt;Set first due reading&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;nv-input&quot; aria-label=&quot;EQ-208 starting reading&quot; value=&quot;2,238&quot;&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;2,488 hr&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;EQ-214&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;EQ-214 start method&quot;&gt;&lt;option&gt;From current meter&lt;/option&gt;&lt;option&gt;From last maintenance&lt;/option&gt;&lt;option&gt;Set first due reading&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;nv-input&quot; aria-label=&quot;EQ-214 starting reading&quot; value=&quot;1,780&quot;&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;2,030 hr&lt;/td&gt;&lt;/tr&gt;
+            &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-footer-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;overview&quot;&gt;Cancel&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-save-individual&gt;Assign maintenance&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;assign&quot; hidden&gt;
+          &lt;div class=&quot;nv-page-head&quot;&gt;&lt;div&gt;&lt;h1&gt;Assign “Standard pickup service”&lt;/h1&gt;&lt;p&gt;Select assets and decide where each maintenance cycle begins.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;nv-stepper&quot; aria-label=&quot;Assignment steps&quot;&gt;
+            &lt;div class=&quot;nv-step is-active&quot; data-step-label=&quot;1&quot;&gt;&lt;span class=&quot;nv-step-number&quot;&gt;1&lt;/span&gt;&lt;span&gt;Select assets&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-step-line&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-step&quot; data-step-label=&quot;2&quot;&gt;&lt;span class=&quot;nv-step-number&quot;&gt;2&lt;/span&gt;&lt;span&gt;Set starting point&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-step-line&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-step&quot; data-step-label=&quot;3&quot;&gt;&lt;span class=&quot;nv-step-number&quot;&gt;3&lt;/span&gt;&lt;span&gt;Review&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-panel&quot; data-assign-step=&quot;1&quot;&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Compatible assets&lt;/h2&gt;&lt;span class=&quot;nv-muted&quot;&gt;Mileage categories only&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-filter-row&quot;&gt;&lt;input class=&quot;nv-input&quot; placeholder=&quot;Search equipment, make, model or VIN&quot; aria-label=&quot;Search compatible assets&quot;&gt;&lt;select class=&quot;nv-select&quot; aria-label=&quot;Profile assignment&quot;&gt;&lt;option&gt;Without this profile&lt;/option&gt;&lt;option&gt;All compatible assets&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-selection-summary&quot;&gt;&lt;strong&gt;&lt;span data-selection-count&gt;2&lt;/span&gt; assets selected&lt;/strong&gt;&lt;span&gt;Readings are configured in the next step&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; aria-label=&quot;Select all assets&quot;&gt;&lt;/th&gt;&lt;th&gt;Equipment&lt;/th&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Current meter&lt;/th&gt;&lt;th&gt;Location&lt;/th&gt;&lt;th&gt;Existing profile&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; data-asset-select checked&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;BM-1042&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Ford F-250 · 2022&lt;/td&gt;&lt;td&gt;Pickup&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;45,320 mi&lt;span class=&quot;nv-reading-stale&quot;&gt;Updated today · Linxup&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Project 2407&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; data-asset-select checked&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;BM-1098&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Chevrolet Silverado · 2021&lt;/td&gt;&lt;td&gt;Pickup&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;31,800 mi&lt;span class=&quot;nv-reading-stale&quot;&gt;Updated 2 days ago · Manual&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Main warehouse&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;input class=&quot;nv-check&quot; type=&quot;checkbox&quot; data-asset-select&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;BM-1103&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RAM 2500 · 2023&lt;/td&gt;&lt;td&gt;Pickup&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;18,105 mi&lt;span class=&quot;nv-reading-stale&quot;&gt;Updated 18 days ago · Manual&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Project 2411&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;/tr&gt;
+            &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-footer-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;profiles&quot;&gt;Cancel&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-next-step=&quot;2&quot;&gt;Continue&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-panel&quot; data-assign-step=&quot;2&quot; hidden&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Set starting point&lt;/h2&gt;&lt;span class=&quot;nv-muted&quot;&gt;Defaults can be adjusted per asset&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-bulk-controls&quot;&gt;
+              &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;bulk-start-method&quot;&gt;Apply to selected assets&lt;/label&gt;&lt;select id=&quot;bulk-start-method&quot; class=&quot;nv-select&quot; data-bulk-method&gt;&lt;option value=&quot;current&quot;&gt;Start from current meter&lt;/option&gt;&lt;option value=&quot;last&quot;&gt;Use last maintenance reading&lt;/option&gt;&lt;option value=&quot;due&quot;&gt;Set first due reading&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;bulk-reading&quot;&gt;Reading&lt;/label&gt;&lt;input id=&quot;bulk-reading&quot; class=&quot;nv-input&quot; placeholder=&quot;Not required for current meter&quot; disabled data-bulk-reading&gt;&lt;/div&gt;
+              &lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-apply-default&gt;Apply default&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;nv-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Current meter&lt;/th&gt;&lt;th&gt;Cycle starts from&lt;/th&gt;&lt;th&gt;Starting reading&lt;/th&gt;&lt;th&gt;First oil service&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;BM-1042&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Ford F-250&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;45,320 mi&lt;/td&gt;&lt;td&gt;&lt;select class=&quot;nv-select&quot; data-row-method&gt;&lt;option value=&quot;current&quot;&gt;Current meter&lt;/option&gt;&lt;option value=&quot;last&quot;&gt;Last maintenance&lt;/option&gt;&lt;option value=&quot;due&quot;&gt;First due reading&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;nv-input&quot; value=&quot;45,320&quot; data-row-reading disabled&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot; data-row-due&gt;50,320 mi&lt;/td&gt;&lt;/tr&gt;
+              &lt;tr&gt;&lt;td&gt;&lt;strong&gt;BM-1098&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;nv-muted&quot;&gt;Chevrolet Silverado&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot;&gt;31,800 mi&lt;/td&gt;&lt;td&gt;&lt;select class=&quot;nv-select&quot; data-row-method&gt;&lt;option value=&quot;current&quot;&gt;Current meter&lt;/option&gt;&lt;option value=&quot;last&quot;&gt;Last maintenance&lt;/option&gt;&lt;option value=&quot;due&quot;&gt;First due reading&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;nv-input&quot; value=&quot;31,800&quot; data-row-reading disabled&gt;&lt;/td&gt;&lt;td class=&quot;nv-reading&quot; data-row-due&gt;36,800 mi&lt;/td&gt;&lt;/tr&gt;
+            &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-guidance&quot; data-guidance-panel style=&quot;margin-top:14px&quot;&gt;&lt;strong&gt;Recommended default&lt;/strong&gt;“Current meter” starts a fresh cycle today. Use “Last maintenance” when you know the reading at which the previous service was performed.&lt;/div&gt;
+            &lt;div class=&quot;nv-footer-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-next-step=&quot;1&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-next-step=&quot;3&quot;&gt;Review assignment&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-panel&quot; data-assign-step=&quot;3&quot; hidden&gt;
+            &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Review and activate&lt;/h2&gt;&lt;span class=&quot;nv-status nv-active&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-review-list&quot;&gt;
+              &lt;div class=&quot;nv-review-row&quot;&gt;&lt;div&gt;&lt;span&gt;Profile&lt;/span&gt;&lt;strong&gt;Standard pickup service&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;Version&lt;/span&gt;&lt;strong&gt;3 · Sep 21, 2026&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;Meter unit&lt;/span&gt;&lt;strong&gt;Mileage&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-review-row&quot;&gt;&lt;div&gt;&lt;span&gt;Selected assets&lt;/span&gt;&lt;strong&gt;2 assets&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;Start method&lt;/span&gt;&lt;strong&gt;Current meter&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;Maintenance items created&lt;/span&gt;&lt;strong&gt;6 schedules&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-review-row&quot;&gt;&lt;div&gt;&lt;span&gt;BM-1042 first oil service&lt;/span&gt;&lt;strong&gt;50,320 mi&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;BM-1098 first oil service&lt;/span&gt;&lt;strong&gt;36,800 mi&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;Warning threshold&lt;/span&gt;&lt;strong&gt;500 mi before&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;nv-footer-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-next-step=&quot;2&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-activate-profile&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Activate for 2 assets&lt;/button&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;nv-panel&quot; data-assign-success hidden&gt;
+            &lt;div style=&quot;text-align:center;padding:38px 16px&quot;&gt;&lt;div class=&quot;nv-success-mark&quot; style=&quot;margin:0 auto 14px&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;h2 style=&quot;margin:0 0 7px;font-size:20px;font-weight:500&quot;&gt;Profile activated&lt;/h2&gt;&lt;p class=&quot;nv-muted&quot;&gt;Six maintenance schedules were created for two assets.&lt;/p&gt;&lt;div class=&quot;nv-actions&quot; style=&quot;justify-content:center;margin-top:16px&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-page-target=&quot;profiles&quot;&gt;Back to profiles&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-page-target=&quot;overview&quot;&gt;View maintenance queue&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;nv-page&quot; data-page=&quot;asset&quot; hidden&gt;
+          &lt;div class=&quot;nv-asset-head&quot;&gt;
+            &lt;div class=&quot;nv-asset-id&quot;&gt;&lt;div class=&quot;nv-asset-icon&quot;&gt;&lt;i data-lucide=&quot;truck&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;h1&gt;BM-1042 · Ford F-250&lt;/h1&gt;&lt;p&gt;Pickup · VIN 1FT7W2BT9NEC1042 · Project 2407&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;&lt;i data-lucide=&quot;gauge&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Update meter&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-success&quot; data-complete-success hidden&gt;Oil &amp;amp; filter change completed at 45,320 mi. The next service is scheduled for 50,320 mi.&lt;/div&gt;
+          &lt;div class=&quot;nv-metrics&quot;&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Current meter&lt;/div&gt;&lt;div class=&quot;nv-metric-value nv-reading&quot;&gt;45,320 mi&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Updated today · Linxup&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Active profile&lt;/div&gt;&lt;div class=&quot;nv-metric-value&quot; style=&quot;font-size:17px&quot;&gt;Standard pickup&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Version 3&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Next maintenance&lt;/div&gt;&lt;div class=&quot;nv-metric-value nv-reading&quot; style=&quot;font-size:20px&quot;&gt;Now&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;Oil &amp;amp; filter change&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;nv-metric&quot;&gt;&lt;div class=&quot;nv-metric-label&quot;&gt;Schedule status&lt;/div&gt;&lt;div style=&quot;margin-top:10px&quot;&gt;&lt;span class=&quot;nv-status nv-overdue&quot;&gt;Overdue&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-metric-note&quot;&gt;320 mi beyond target&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nv-grid-2&quot;&gt;
+            &lt;div class=&quot;nv-panel&quot;&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Maintenance schedule&lt;/h2&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot;&gt;Manage profile&lt;/button&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-schedule-card&quot;&gt;&lt;div class=&quot;nv-schedule-top&quot;&gt;&lt;strong&gt;Oil &amp;amp; filter change&lt;/strong&gt;&lt;span class=&quot;nv-status nv-overdue&quot;&gt;Overdue&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-progress-track&quot;&gt;&lt;div class=&quot;nv-progress-fill&quot; style=&quot;width:100%;background:var(--nv-red)&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;nv-schedule-meta&quot;&gt;&lt;span&gt;Every 5,000 mi&lt;/span&gt;&lt;span&gt;Due at 45,000 mi&lt;/span&gt;&lt;span&gt;Current 45,320 mi&lt;/span&gt;&lt;/div&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; style=&quot;margin-top:11px&quot; type=&quot;button&quot; data-open-complete=&quot;true&quot;&gt;Complete maintenance&lt;/button&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-schedule-card&quot;&gt;&lt;div class=&quot;nv-schedule-top&quot;&gt;&lt;strong&gt;Tire rotation&lt;/strong&gt;&lt;span class=&quot;nv-status nv-soon&quot;&gt;Due soon&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-progress-track&quot;&gt;&lt;div class=&quot;nv-progress-fill&quot; style=&quot;width:93%;background:var(--nv-orange)&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;nv-schedule-meta&quot;&gt;&lt;span&gt;Every 7,500 mi&lt;/span&gt;&lt;span&gt;Due at 45,800 mi&lt;/span&gt;&lt;span&gt;480 mi remaining&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-schedule-card&quot;&gt;&lt;div class=&quot;nv-schedule-top&quot;&gt;&lt;strong&gt;General inspection&lt;/strong&gt;&lt;span class=&quot;nv-status nv-upcoming&quot;&gt;Upcoming&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;nv-progress-track&quot;&gt;&lt;div class=&quot;nv-progress-fill&quot; style=&quot;width:53%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;nv-schedule-meta&quot;&gt;&lt;span&gt;Every 10,000 mi&lt;/span&gt;&lt;span&gt;Due at 50,800 mi&lt;/span&gt;&lt;span&gt;5,480 mi remaining&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+
+              &lt;div class=&quot;nv-complete&quot; data-complete-form hidden&gt;
+                &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Complete oil &amp;amp; filter change&lt;/h2&gt;&lt;button class=&quot;nv-icon-button&quot; type=&quot;button&quot; aria-label=&quot;Close form&quot; data-close-complete&gt;&lt;i data-lucide=&quot;x&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-form-grid&quot;&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;completed-date&quot;&gt;Completed on&lt;/label&gt;&lt;input id=&quot;completed-date&quot; class=&quot;nv-input&quot; type=&quot;date&quot; value=&quot;2026-09-21&quot;&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field&quot;&gt;&lt;label for=&quot;completed-reading&quot;&gt;Meter reading&lt;/label&gt;&lt;input id=&quot;completed-reading&quot; class=&quot;nv-input&quot; value=&quot;45,320&quot;&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;completed-notes&quot;&gt;Notes&lt;/label&gt;&lt;textarea id=&quot;completed-notes&quot; class=&quot;nv-textarea&quot; rows=&quot;2&quot; placeholder=&quot;Work performed, parts or observations&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;
+                  &lt;div class=&quot;nv-field nv-span-2&quot;&gt;&lt;label for=&quot;completed-file&quot;&gt;Attachment&lt;/label&gt;&lt;input id=&quot;completed-file&quot; class=&quot;nv-input&quot; type=&quot;file&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;nv-footer-actions&quot;&gt;&lt;button class=&quot;nv-button&quot; type=&quot;button&quot; data-close-complete&gt;Cancel&lt;/button&gt;&lt;button class=&quot;nv-button nv-button-primary&quot; type=&quot;button&quot; data-submit-complete&gt;Complete and schedule next&lt;/button&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;aside class=&quot;nv-panel&quot;&gt;
+              &lt;div class=&quot;nv-section-head&quot;&gt;&lt;h2&gt;Recent maintenance&lt;/h2&gt;&lt;button class=&quot;nv-link&quot; type=&quot;button&quot;&gt;View all&lt;/button&gt;&lt;/div&gt;
+              &lt;div class=&quot;nv-review-list&quot;&gt;
+                &lt;div class=&quot;nv-review-row&quot; style=&quot;grid-template-columns:1fr auto&quot;&gt;&lt;div&gt;&lt;span&gt;Oil &amp;amp; filter change&lt;/span&gt;&lt;strong&gt;40,030 mi&lt;/strong&gt;&lt;div class=&quot;nv-field-note&quot;&gt;May 14, 2026 · Carlos M.&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;i data-lucide=&quot;paperclip&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-review-row&quot; style=&quot;grid-template-columns:1fr auto&quot;&gt;&lt;div&gt;&lt;span&gt;Tire rotation&lt;/span&gt;&lt;strong&gt;38,300 mi&lt;/strong&gt;&lt;div class=&quot;nv-field-note&quot;&gt;Mar 27, 2026 · Patricia H.&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;i data-lucide=&quot;paperclip&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;nv-review-row&quot; style=&quot;grid-template-columns:1fr auto&quot;&gt;&lt;div&gt;&lt;span&gt;General inspection&lt;/span&gt;&lt;strong&gt;30,810 mi&lt;/strong&gt;&lt;div class=&quot;nv-field-note&quot;&gt;Oct 5, 2025 · Duncan R.&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/aside&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  (() =&gt; {
+    const root = document.getElementById(&#x27;novacor-maintenance-ux&#x27;);
+    const state = { startPage: &#x27;overview&#x27;, compactTables: false, showGuidance: true };
+    const pageTitles = { movement: &#x27;Asset Movement&#x27;, overview: &#x27;Maintenance overview&#x27;, profiles: &#x27;Maintenance profiles&#x27;, builder: &#x27;Profile builder&#x27;, assign: &#x27;Assign profile&#x27;, individual: &#x27;Assign maintenance&#x27;, asset: &#x27;Asset schedule&#x27; };
+
+    function showPage(page) {
+      root.querySelectorAll(&#x27;[data-page]&#x27;).forEach(section =&gt; { section.hidden = section.dataset.page !== page; });
+      root.querySelectorAll(&#x27;.nv-nav-button[data-page-target]&#x27;).forEach(button =&gt; {
+        if (button.dataset.pageTarget === page) button.setAttribute(&#x27;aria-current&#x27;, &#x27;page&#x27;);
+        else button.removeAttribute(&#x27;aria-current&#x27;);
+      });
+      root.querySelector(&#x27;#nv-topbar-title&#x27;).textContent = pageTitles[page] || &#x27;Maintenance&#x27;;
+      state.startPage = page;
+    }
+
+    function renderOptions() {
+      showPage(state.startPage);
+      root.classList.toggle(&#x27;nv-dense&#x27;, state.compactTables);
+      root.querySelectorAll(&#x27;[data-guidance-panel]&#x27;).forEach(panel =&gt; { panel.hidden = !state.showGuidance; });
+    }
+
+    root.addEventListener(&#x27;click&#x27;, event =&gt; {
+      const pageButton = event.target.closest(&#x27;[data-page-target]&#x27;);
+      if (pageButton) showPage(pageButton.dataset.pageTarget);
+
+      const stepButton = event.target.closest(&#x27;[data-next-step]&#x27;);
+      if (stepButton) {
+        const step = stepButton.dataset.nextStep;
+        root.querySelectorAll(&#x27;[data-assign-step]&#x27;).forEach(panel =&gt; { panel.hidden = panel.dataset.assignStep !== step; });
+        root.querySelectorAll(&#x27;[data-step-label]&#x27;).forEach(label =&gt; {
+          const value = Number(label.dataset.stepLabel);
+          label.classList.toggle(&#x27;is-active&#x27;, value === Number(step));
+          label.classList.toggle(&#x27;is-done&#x27;, value &lt; Number(step));
+        });
+      }
+
+      if (event.target.closest(&#x27;[data-activate-profile]&#x27;)) {
+        root.querySelectorAll(&#x27;[data-assign-step]&#x27;).forEach(panel =&gt; { panel.hidden = true; });
+        root.querySelector(&#x27;[data-assign-success]&#x27;).hidden = false;
+      }
+
+      if (event.target.closest(&#x27;[data-save-profile]&#x27;)) {
+        const success = root.querySelector(&#x27;[data-profile-success]&#x27;);
+        success.hidden = false;
+        setTimeout(() =&gt; { success.hidden = true; }, 3200);
+      }
+
+      if (event.target.closest(&#x27;[data-save-individual]&#x27;)) {
+        root.querySelector(&#x27;[data-individual-success]&#x27;).hidden = false;
+      }
+
+      if (event.target.closest(&#x27;[data-add-service]&#x27;)) {
+        const row = document.createElement(&#x27;div&#x27;);
+        row.className = &#x27;nv-service-row&#x27;;
+        row.innerHTML = &#x27;&lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Maintenance&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Transmission service&lt;/option&gt;&lt;option&gt;Brake inspection&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Every&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;30,000&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Unit&lt;/label&gt;&lt;select class=&quot;nv-select&quot;&gt;&lt;option&gt;Miles&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;nv-field&quot;&gt;&lt;label&gt;Warn before&lt;/label&gt;&lt;input class=&quot;nv-input&quot; value=&quot;1,000&quot;&gt;&lt;/div&gt;&lt;button class=&quot;nv-icon-button&quot; type=&quot;button&quot; aria-label=&quot;Remove maintenance&quot;&gt;&lt;i data-lucide=&quot;trash-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&#x27;;
+        root.querySelector(&#x27;[data-services-list]&#x27;).appendChild(row);
+        if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+
+      const removeButton = event.target.closest(&#x27;.nv-icon-button&#x27;);
+      if (removeButton &amp;&amp; removeButton.closest(&#x27;.nv-service-row&#x27;)) removeButton.closest(&#x27;.nv-service-row&#x27;).remove();
+
+      if (event.target.closest(&#x27;[data-open-complete]&#x27;)) {
+        showPage(&#x27;asset&#x27;);
+        root.querySelector(&#x27;[data-complete-form]&#x27;).hidden = false;
+      }
+      if (event.target.closest(&#x27;[data-close-complete]&#x27;)) root.querySelector(&#x27;[data-complete-form]&#x27;).hidden = true;
+      if (event.target.closest(&#x27;[data-submit-complete]&#x27;)) {
+        root.querySelector(&#x27;[data-complete-form]&#x27;).hidden = true;
+        root.querySelector(&#x27;[data-complete-success]&#x27;).hidden = false;
+      }
+
+      if (event.target.closest(&#x27;[data-apply-default]&#x27;)) {
+        const method = root.querySelector(&#x27;[data-bulk-method]&#x27;).value;
+        root.querySelectorAll(&#x27;[data-row-method]&#x27;).forEach(select =&gt; {
+          select.value = method;
+          select.dispatchEvent(new Event(&#x27;change&#x27;, { bubbles: true }));
+        });
+      }
+    });
+
+    root.addEventListener(&#x27;change&#x27;, event =&gt; {
+      if (event.target.matches(&#x27;[data-asset-select]&#x27;)) {
+        root.querySelector(&#x27;[data-selection-count]&#x27;).textContent = root.querySelectorAll(&#x27;[data-asset-select]:checked&#x27;).length;
+      }
+      if (event.target.matches(&#x27;[data-bulk-method]&#x27;)) {
+        root.querySelector(&#x27;[data-bulk-reading]&#x27;).disabled = event.target.value === &#x27;current&#x27;;
+      }
+      if (event.target.matches(&#x27;[data-row-method]&#x27;)) {
+        const row = event.target.closest(&#x27;tr&#x27;);
+        const input = row.querySelector(&#x27;[data-row-reading]&#x27;);
+        input.disabled = event.target.value === &#x27;current&#x27;;
+        row.querySelector(&#x27;[data-row-due]&#x27;).textContent = event.target.value === &#x27;due&#x27; ? &#x27;Uses entered due reading&#x27; : &#x27;Recalculated from reading&#x27;;
+      }
+    });
+
+    renderOptions();
+
+    if (globalThis.Tweak) {
+      const tweak = new Tweak({ container: root, onChange: renderOptions });
+      tweak.addSelect(state, &#x27;startPage&#x27;, { label: &#x27;Preview screen&#x27;, options: [
+        { label: &#x27;Asset Movement&#x27;, value: &#x27;movement&#x27; },
+        { label: &#x27;Overview&#x27;, value: &#x27;overview&#x27; },
+        { label: &#x27;Profiles&#x27;, value: &#x27;profiles&#x27; },
+        { label: &#x27;Profile builder&#x27;, value: &#x27;builder&#x27; },
+        { label: &#x27;Assign assets&#x27;, value: &#x27;assign&#x27; },
+        { label: &#x27;Assign maintenance&#x27;, value: &#x27;individual&#x27; },
+        { label: &#x27;Asset schedule&#x27;, value: &#x27;asset&#x27; }
+      ], reference: &#x27;maintenance.startPage&#x27; });
+      tweak.addToggle(state, &#x27;compactTables&#x27;, { label: &#x27;Compact tables&#x27;, reference: &#x27;maintenance.compactTables&#x27; });
+      tweak.addToggle(state, &#x27;showGuidance&#x27;, { label: &#x27;Show guidance&#x27;, reference: &#x27;maintenance.showGuidance&#x27; });
+    }
+  })();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerdown&quot;, handlePointer);
+    document.removeEventListener(&quot;pointercancel&quot;, handlePointer);
+    document.removeEventListener(&quot;click&quot;, handleTouchClick);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerdown&quot;, handlePointer);
+  document.addEventListener(&quot;pointercancel&quot;, handlePointer);
+  document.addEventListener(&quot;click&quot;, handleTouchClick);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

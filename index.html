@@ -1,0 +1,757 @@
+<style>
+  #novacor-maintenance-ux {
+    --nv-bg: light-dark(#eef1f5, #111827);
+    --nv-shell: light-dark(#ffffff, #18212f);
+    --nv-sidebar: light-dark(#f7f9fc, #f7f9fc);
+    --nv-sidebar-text: light-dark(#263342, #263342);
+    --nv-sidebar-muted: light-dark(#5c6b7d, #5c6b7d);
+    --nv-panel: light-dark(#ffffff, #1f2937);
+    --nv-panel-soft: light-dark(#f7f9fb, #253245);
+    --nv-text: light-dark(#263342, #f3f4f6);
+    --nv-muted: light-dark(#697787, #b4c0ce);
+    --nv-line: light-dark(#dfe5eb, #3a4657);
+    --nv-blue: light-dark(#1775d1, #65a9ea);
+    --nv-blue-soft: light-dark(#e8f3fd, #173a5c);
+    --nv-green: light-dark(#188657, #5ccf9b);
+    --nv-green-soft: light-dark(#e5f5ee, #173d31);
+    --nv-orange: light-dark(#b76310, #f4ad62);
+    --nv-orange-soft: light-dark(#fff0df, #51331a);
+    --nv-red: light-dark(#b73535, #f07b7b);
+    --nv-red-soft: light-dark(#fdeaea, #512525);
+    --nv-purple: light-dark(#7454b6, #b69cf0);
+    color: var(--nv-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    width: 100%;
+  }
+
+  #novacor-maintenance-ux * { box-sizing: border-box; }
+  #novacor-maintenance-ux button,
+  #novacor-maintenance-ux input,
+  #novacor-maintenance-ux select,
+  #novacor-maintenance-ux textarea { font: inherit; }
+
+  #novacor-maintenance-ux .nv-window {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    min-height: 680px;
+    background: var(--nv-shell);
+    overflow: hidden;
+  }
+
+  #novacor-maintenance-ux .nv-sidebar {
+    background: var(--nv-sidebar);
+    color: var(--nv-sidebar-text);
+    padding: 22px 14px;
+  }
+
+  #novacor-maintenance-ux .nv-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    margin: 0 2px 18px;
+    padding: 8px 10px;
+  }
+
+  #novacor-maintenance-ux .nv-brand-logo { display: block; width: 150px; max-width: 100%; height: auto; }
+  #novacor-maintenance-ux .nv-success-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--nv-green); color: #fff; }
+
+  #novacor-maintenance-ux .nv-nav-label {
+    margin: 18px 10px 8px;
+    color: var(--nv-sidebar-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  #novacor-maintenance-ux .nv-nav-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    margin: 2px 0;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--nv-sidebar-text);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-nav-button:hover,
+  #novacor-maintenance-ux .nv-nav-button[aria-current="page"] {
+    background: color-mix(in srgb, var(--nv-blue) 25%, transparent);
+  }
+
+  #novacor-maintenance-ux .nv-nav-button svg { width: 17px; height: 17px; }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub { min-height: 36px; padding-left: 35px; color: var(--nv-sidebar-muted); }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub svg { width: 14px; height: 14px; }
+  #novacor-maintenance-ux .nv-nav-button.nv-nav-sub[aria-current="page"] { color: var(--nv-sidebar-text); }
+  #novacor-maintenance-ux .nv-nav-divider { height: 1px; margin: 13px 8px; background: color-mix(in srgb, var(--nv-sidebar-muted) 30%, transparent); }
+
+  #novacor-maintenance-ux .nv-main { min-width: 0; background: var(--nv-bg); }
+
+  #novacor-maintenance-ux .nv-topbar {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--nv-shell);
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-topbar-title { font-weight: 500; }
+  #novacor-maintenance-ux .nv-user { display: flex; align-items: center; gap: 9px; color: var(--nv-muted); }
+  #novacor-maintenance-ux .nv-avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--nv-purple);
+    color: #fff;
+    font-size: 12px;
+  }
+
+  #novacor-maintenance-ux .nv-content { padding: 22px 24px 30px; }
+  #novacor-maintenance-ux .nv-page[hidden] { display: none !important; }
+
+  #novacor-maintenance-ux .nv-page-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  #novacor-maintenance-ux .nv-page-head h1,
+  #novacor-maintenance-ux .nv-section-head h2 { margin: 0; font-size: 21px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-page-head p { margin: 5px 0 0; color: var(--nv-muted); font-size: 14px; }
+
+  #novacor-maintenance-ux .nv-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  #novacor-maintenance-ux .nv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: var(--nv-panel);
+    color: var(--nv-text);
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-button-primary { background: var(--nv-blue); border-color: var(--nv-blue); color: #fff; }
+  #novacor-maintenance-ux .nv-button-quiet { background: transparent; }
+  #novacor-maintenance-ux .nv-button-danger { color: var(--nv-red); }
+  #novacor-maintenance-ux .nv-button svg { width: 16px; height: 16px; }
+
+  #novacor-maintenance-ux .nv-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  #novacor-maintenance-ux .nv-metric {
+    background: var(--nv-panel);
+    border: 1px solid var(--nv-line);
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  #novacor-maintenance-ux .nv-metric-label { color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-metric-value { margin-top: 7px; font-size: 25px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-metric-note { margin-top: 5px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-panel {
+    background: var(--nv-panel);
+    border: 1px solid var(--nv-line);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  #novacor-maintenance-ux .nv-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  #novacor-maintenance-ux .nv-section-head h2 { font-size: 16px; }
+  #novacor-maintenance-ux .nv-filter-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; }
+
+  #novacor-maintenance-ux .nv-input,
+  #novacor-maintenance-ux .nv-select,
+  #novacor-maintenance-ux .nv-textarea {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 10px;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: var(--nv-shell);
+    color: var(--nv-text);
+  }
+
+  #novacor-maintenance-ux .nv-filter-row .nv-input { flex: 1 1 230px; }
+  #novacor-maintenance-ux .nv-filter-row .nv-select { flex: 0 1 160px; }
+  #novacor-maintenance-ux .nv-field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-field-note { margin-top: 5px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-table-wrap { overflow-x: auto; }
+  #novacor-maintenance-ux table { width: 100%; border-collapse: collapse; }
+  #novacor-maintenance-ux th,
+  #novacor-maintenance-ux td { padding: 12px 10px; border-bottom: 1px solid var(--nv-line); text-align: left; vertical-align: middle; }
+  #novacor-maintenance-ux th { color: var(--nv-muted); font-size: 12px; font-weight: 500; white-space: nowrap; }
+  #novacor-maintenance-ux td { font-size: 13px; }
+  #novacor-maintenance-ux tbody tr:last-child td { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-dense th,
+  #novacor-maintenance-ux .nv-dense td { padding-top: 8px; padding-bottom: 8px; }
+
+  #novacor-maintenance-ux .nv-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  #novacor-maintenance-ux .nv-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  #novacor-maintenance-ux .nv-upcoming { color: var(--nv-blue); background: var(--nv-blue-soft); }
+  #novacor-maintenance-ux .nv-soon { color: var(--nv-orange); background: var(--nv-orange-soft); }
+  #novacor-maintenance-ux .nv-overdue { color: var(--nv-red); background: var(--nv-red-soft); }
+  #novacor-maintenance-ux .nv-active { color: var(--nv-green); background: var(--nv-green-soft); }
+  #novacor-maintenance-ux .nv-muted { color: var(--nv-muted); }
+  #novacor-maintenance-ux .nv-link { color: var(--nv-blue); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+
+  #novacor-maintenance-ux .nv-grid-2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr); gap: 16px; }
+  #novacor-maintenance-ux .nv-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #novacor-maintenance-ux .nv-form-grid .nv-span-2 { grid-column: 1 / -1; }
+
+  #novacor-maintenance-ux .nv-service-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.4fr) minmax(95px, .6fr) minmax(110px, .7fr) minmax(100px, .6fr) 34px;
+    gap: 8px;
+    align-items: end;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-service-row:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-service-row .nv-field label { color: var(--nv-muted); font-size: 11px; }
+  #novacor-maintenance-ux .nv-icon-button {
+    width: 34px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--nv-line);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--nv-red);
+    cursor: pointer;
+  }
+
+  #novacor-maintenance-ux .nv-icon-button svg { width: 15px; height: 15px; }
+  #novacor-maintenance-ux .nv-guidance { padding: 13px; border-left: 3px solid var(--nv-blue); background: var(--nv-blue-soft); font-size: 13px; }
+  #novacor-maintenance-ux .nv-guidance strong { display: block; margin-bottom: 4px; }
+  #novacor-maintenance-ux .nv-bullets { margin: 10px 0 0; padding-left: 18px; color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-bullets li { margin: 7px 0; }
+
+  #novacor-maintenance-ux .nv-stepper { display: flex; align-items: center; margin-bottom: 20px; }
+  #novacor-maintenance-ux .nv-step { display: flex; align-items: center; gap: 8px; color: var(--nv-muted); font-size: 13px; }
+  #novacor-maintenance-ux .nv-step-number { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: var(--nv-panel-soft); }
+  #novacor-maintenance-ux .nv-step.is-active { color: var(--nv-blue); font-weight: 500; }
+  #novacor-maintenance-ux .nv-step.is-active .nv-step-number,
+  #novacor-maintenance-ux .nv-step.is-done .nv-step-number { background: var(--nv-blue); color: #fff; }
+  #novacor-maintenance-ux .nv-step-line { flex: 1; height: 1px; margin: 0 10px; background: var(--nv-line); }
+  #novacor-maintenance-ux .nv-check { width: 17px; height: 17px; accent-color: var(--nv-blue); }
+
+  #novacor-maintenance-ux .nv-selection-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 13px;
+    margin-bottom: 12px;
+    background: var(--nv-blue-soft);
+    color: var(--nv-text);
+  }
+
+  #novacor-maintenance-ux .nv-bulk-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-reading { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  #novacor-maintenance-ux .nv-reading-stale { color: var(--nv-orange); font-size: 11px; display: block; margin-top: 2px; }
+  #novacor-maintenance-ux .nv-footer-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
+
+  #novacor-maintenance-ux .nv-review-list { display: grid; gap: 9px; }
+  #novacor-maintenance-ux .nv-review-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--nv-line); }
+  #novacor-maintenance-ux .nv-review-row:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-review-row span { color: var(--nv-muted); font-size: 12px; display: block; margin-bottom: 4px; }
+
+  #novacor-maintenance-ux .nv-asset-head { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+  #novacor-maintenance-ux .nv-asset-id { display: flex; gap: 13px; align-items: center; }
+  #novacor-maintenance-ux .nv-asset-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 8px; background: var(--nv-blue-soft); color: var(--nv-blue); }
+  #novacor-maintenance-ux .nv-asset-icon svg { width: 23px; height: 23px; }
+  #novacor-maintenance-ux .nv-asset-id h1 { margin: 0; font-size: 20px; font-weight: 500; }
+  #novacor-maintenance-ux .nv-asset-id p { margin: 4px 0 0; color: var(--nv-muted); font-size: 13px; }
+
+  #novacor-maintenance-ux .nv-progress-track { height: 7px; margin-top: 8px; overflow: hidden; border-radius: 999px; background: var(--nv-panel-soft); }
+  #novacor-maintenance-ux .nv-progress-fill { height: 100%; background: var(--nv-blue); }
+  #novacor-maintenance-ux .nv-schedule-card { padding: 13px 0; border-bottom: 1px solid var(--nv-line); }
+  #novacor-maintenance-ux .nv-schedule-card:last-child { border-bottom: 0; }
+  #novacor-maintenance-ux .nv-schedule-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  #novacor-maintenance-ux .nv-schedule-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; color: var(--nv-muted); font-size: 12px; }
+
+  #novacor-maintenance-ux .nv-complete {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--nv-line);
+  }
+
+  #novacor-maintenance-ux .nv-complete[hidden] { display: none; }
+  #novacor-maintenance-ux .nv-success { padding: 10px 12px; margin-bottom: 12px; background: var(--nv-green-soft); color: var(--nv-green); }
+  #novacor-maintenance-ux .nv-success[hidden] { display: none; }
+
+  @media (max-width: 640px) {
+    #novacor-maintenance-ux .nv-window { grid-template-columns: 68px minmax(0, 1fr); }
+    #novacor-maintenance-ux .nv-brand-logo,
+    #novacor-maintenance-ux .nv-nav-label,
+    #novacor-maintenance-ux .nv-nav-button span { display: none; }
+    #novacor-maintenance-ux .nv-sidebar { padding-inline: 10px; }
+    #novacor-maintenance-ux .nv-brand,
+    #novacor-maintenance-ux .nv-nav-button { justify-content: center; }
+    #novacor-maintenance-ux .nv-brand { min-height: 40px; padding: 4px; background: transparent; }
+    #novacor-maintenance-ux .nv-brand::after { content: "N"; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--nv-blue); color: #fff; font-weight: 500; }
+    #novacor-maintenance-ux .nv-nav-button.nv-nav-sub { padding-left: 10px; }
+    #novacor-maintenance-ux .nv-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #novacor-maintenance-ux .nv-grid-2 { grid-template-columns: 1fr; }
+    #novacor-maintenance-ux .nv-service-row { grid-template-columns: 1fr 1fr; }
+    #novacor-maintenance-ux .nv-service-row .nv-field:first-child { grid-column: 1 / -1; }
+    #novacor-maintenance-ux .nv-bulk-controls { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    #novacor-maintenance-ux .nv-window { display: block; }
+    #novacor-maintenance-ux .nv-sidebar { display: flex; gap: 4px; overflow-x: auto; padding: 8px; }
+    #novacor-maintenance-ux .nv-brand,
+    #novacor-maintenance-ux .nv-nav-label { display: none; }
+    #novacor-maintenance-ux .nv-nav-button { min-width: 44px; margin: 0; }
+    #novacor-maintenance-ux .nv-topbar { padding: 0 14px; }
+    #novacor-maintenance-ux .nv-user span { display: none; }
+    #novacor-maintenance-ux .nv-content { padding: 16px 12px 24px; }
+    #novacor-maintenance-ux .nv-page-head,
+    #novacor-maintenance-ux .nv-asset-head { flex-direction: column; }
+    #novacor-maintenance-ux .nv-metrics,
+    #novacor-maintenance-ux .nv-form-grid { grid-template-columns: 1fr; }
+    #novacor-maintenance-ux .nv-form-grid .nv-span-2 { grid-column: auto; }
+    #novacor-maintenance-ux .nv-step span:last-child { display: none; }
+    #novacor-maintenance-ux .nv-review-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div id="novacor-maintenance-ux" aria-label="Propuesta UX para perfiles de mantenimiento">
+  <div class="nv-window">
+    <aside class="nv-sidebar" aria-label="Asset navigation">
+      <div class="nv-brand"><img class="nv-brand-logo" alt="Stock NovaCor" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAABQCAYAAABLT6p5AAAEsmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgdGlmZjpJbWFnZUxlbmd0aD0iODAiCiAgIHRpZmY6SW1hZ2VXaWR0aD0iMTk0IgogICB0aWZmOlJlc29sdXRpb25Vbml0PSIyIgogICB0aWZmOlhSZXNvbHV0aW9uPSI5Ni8xIgogICB0aWZmOllSZXNvbHV0aW9uPSI5Ni8xIgogICBleGlmOlBpeGVsWERpbWVuc2lvbj0iMTk0IgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iODAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIKICAgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIgogICB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0w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"></div>
+      <div class="nv-nav-label">Assets</div>
+      <button class="nv-nav-button" type="button"><i data-lucide="layout-dashboard" aria-hidden="true"></i><span>Asset board</span></button>
+      <button class="nv-nav-button" type="button"><i data-lucide="list" aria-hidden="true"></i><span>Asset list</span></button>
+      <button class="nv-nav-button" type="button" data-page-target="movement"><i data-lucide="arrow-left-right" aria-hidden="true"></i><span>Asset Movement</span></button>
+      <button class="nv-nav-button" type="button"><i data-lucide="map-pin" aria-hidden="true"></i><span>Locations</span></button>
+      <div class="nv-nav-divider"></div>
+      <div class="nv-nav-label">Maintenance</div>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="overview" aria-current="page"><i data-lucide="gauge" aria-hidden="true"></i><span>Overview</span></button>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="profiles"><i data-lucide="layers-3" aria-hidden="true"></i><span>Profiles</span></button>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="builder"><i data-lucide="list-plus" aria-hidden="true"></i><span>Profile builder</span></button>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="assign"><i data-lucide="link-2" aria-hidden="true"></i><span>Assign profile</span></button>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="individual"><i data-lucide="wrench" aria-hidden="true"></i><span>Assign maintenance</span></button>
+      <button class="nv-nav-button nv-nav-sub" type="button" data-page-target="asset"><i data-lucide="truck" aria-hidden="true"></i><span>Asset schedule</span></button>
+    </aside>
+
+    <main class="nv-main">
+      <header class="nv-topbar">
+        <div class="nv-topbar-title" id="nv-topbar-title">Maintenance overview</div>
+        <div class="nv-user"><span>Patricia Higgins</span><span class="nv-avatar">PH</span></div>
+      </header>
+
+      <div class="nv-content">
+        <section class="nv-page" data-page="movement" hidden>
+          <div class="nv-page-head">
+            <div><h1>Asset Movement</h1><p>Transfer assets between warehouses, projects and other authorized locations.</p></div>
+            <button class="nv-button nv-button-primary" type="button"><i data-lucide="plus" aria-hidden="true"></i>New movement</button>
+          </div>
+          <div class="nv-metrics">
+            <div class="nv-metric"><div class="nv-metric-label">In transit</div><div class="nv-metric-value">6</div><div class="nv-metric-note">Awaiting delivery confirmation</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Requested</div><div class="nv-metric-value">3</div><div class="nv-metric-note">Pending authorization</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Completed today</div><div class="nv-metric-value">8</div><div class="nv-metric-note">Across 4 locations</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Need attention</div><div class="nv-metric-value" style="color:var(--nv-orange)">2</div><div class="nv-metric-note">Reading or receipt missing</div></div>
+          </div>
+          <div class="nv-panel">
+            <div class="nv-section-head"><h2>Recent movements</h2><button class="nv-button nv-button-quiet" type="button"><i data-lucide="download" aria-hidden="true"></i>Export</button></div>
+            <div class="nv-filter-row"><input class="nv-input" aria-label="Search movements" placeholder="Search equipment, project or location"><select class="nv-select" aria-label="Movement status"><option>All statuses</option><option>Requested</option><option>In transit</option><option>Completed</option></select></div>
+            <div class="nv-table-wrap"><table><thead><tr><th>Movement</th><th>Asset</th><th>From</th><th>To</th><th>Requested by</th><th>Status</th><th></th></tr></thead><tbody>
+              <tr><td><strong>MV-240921-018</strong><br><span class="nv-muted">Sep 21, 2026</span></td><td>BM-1042 · Ford F-250</td><td>Main warehouse</td><td>Project 2407</td><td>Patricia Higgins</td><td><span class="nv-status nv-soon">In transit</span></td><td><button class="nv-button" type="button">View</button></td></tr>
+              <tr><td><strong>MV-240921-017</strong><br><span class="nv-muted">Sep 21, 2026</span></td><td>EQ-208 · CAT 320</td><td>Project 2398</td><td>Service yard</td><td>Carlos Mendoza</td><td><span class="nv-status nv-upcoming">Requested</span></td><td><button class="nv-button" type="button">Review</button></td></tr>
+              <tr><td><strong>MV-240921-016</strong><br><span class="nv-muted">Sep 21, 2026</span></td><td>BM-1098 · Silverado</td><td>Project 2401</td><td>Main warehouse</td><td>Duncan Ross</td><td><span class="nv-status nv-active">Completed</span></td><td><button class="nv-button" type="button">View</button></td></tr>
+            </tbody></table></div>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="overview">
+          <div class="nv-page-head">
+            <div><h1>Maintenance overview</h1><p>Maintenance status based on each asset’s latest meter reading.</p></div>
+            <div class="nv-actions"><button class="nv-button" type="button" data-page-target="profiles"><i data-lucide="layers-3" aria-hidden="true"></i>Profiles</button><button class="nv-button" type="button" data-page-target="assign"><i data-lucide="link-2" aria-hidden="true"></i>Assign profile</button><button class="nv-button nv-button-primary" type="button" data-page-target="individual"><i data-lucide="plus" aria-hidden="true"></i>Assign maintenance</button></div>
+          </div>
+
+          <div class="nv-metrics">
+            <div class="nv-metric"><div class="nv-metric-label">Overdue</div><div class="nv-metric-value" style="color:var(--nv-red)">4</div><div class="nv-metric-note">Requires attention</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Due soon</div><div class="nv-metric-value" style="color:var(--nv-orange)">7</div><div class="nv-metric-note">Inside warning threshold</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Upcoming</div><div class="nv-metric-value">18</div><div class="nv-metric-note">Scheduled normally</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Without a profile</div><div class="nv-metric-value">12</div><div class="nv-metric-note">Eligible assets</div></div>
+          </div>
+
+          <div class="nv-panel">
+            <div class="nv-section-head"><h2>Maintenance queue</h2><button class="nv-button nv-button-quiet" type="button"><i data-lucide="download" aria-hidden="true"></i>Export</button></div>
+            <div class="nv-filter-row"><input class="nv-input" aria-label="Search assets" placeholder="Search equipment, make or model"><select class="nv-select" aria-label="Status"><option>All statuses</option><option>Overdue</option><option>Due soon</option><option>Upcoming</option></select><select class="nv-select" aria-label="Location"><option>All locations</option><option>Warehouse</option><option>Project 2407</option></select></div>
+            <div class="nv-table-wrap">
+              <table>
+                <thead><tr><th>Asset</th><th>Maintenance</th><th>Source</th><th>Current meter</th><th>Due at</th><th>Remaining</th><th>Status</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><button class="nv-link" type="button" data-page-target="asset"><strong>BM-1042</strong><br><span class="nv-muted">Ford F-250</span></button></td><td>Oil &amp; filter change</td><td>Standard pickup profile</td><td class="nv-reading">45,320 mi</td><td class="nv-reading">45,000 mi</td><td class="nv-reading">320 mi overdue</td><td><span class="nv-status nv-overdue">Overdue</span></td><td><button class="nv-button" type="button" data-open-complete="true">Complete</button></td></tr>
+                  <tr><td><strong>EQ-208</strong><br><span class="nv-muted">CAT 320 Excavator</span></td><td>Hydraulic filter replacement</td><td>Individual</td><td class="nv-reading">2,238 hr</td><td class="nv-reading">2,250 hr</td><td class="nv-reading">12 hr</td><td><span class="nv-status nv-soon">Due soon</span></td><td><button class="nv-button" type="button">View</button></td></tr>
+                  <tr><td><strong>BM-1098</strong><br><span class="nv-muted">Chevrolet Silverado</span></td><td>Tire rotation</td><td>Standard pickup profile</td><td class="nv-reading">31,800 mi</td><td class="nv-reading">35,000 mi</td><td class="nv-reading">3,200 mi</td><td><span class="nv-status nv-upcoming">Upcoming</span></td><td><button class="nv-button" type="button">View</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="profiles" hidden>
+          <div class="nv-page-head">
+            <div><h1>Maintenance profiles</h1><p>Reusable maintenance plans for assets that share the same service cycle.</p></div>
+            <button class="nv-button nv-button-primary" type="button" data-page-target="builder"><i data-lucide="plus" aria-hidden="true"></i>New profile</button>
+          </div>
+          <div class="nv-panel">
+            <div class="nv-filter-row"><input class="nv-input" aria-label="Search profiles" placeholder="Search profiles"><select class="nv-select" aria-label="Unit"><option>All units</option><option>Mileage</option><option>Engine hours</option></select><select class="nv-select" aria-label="Profile status"><option>Active profiles</option><option>Archived profiles</option></select></div>
+            <div class="nv-table-wrap">
+              <table>
+                <thead><tr><th>Profile</th><th>Unit</th><th>Maintenance items</th><th>Assigned assets</th><th>Last updated</th><th>Status</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Standard pickup service</strong><br><span class="nv-muted">Routine service for company pickups</span></td><td>Mileage</td><td>4</td><td>18</td><td>Sep 18, 2026</td><td><span class="nv-status nv-active">Active</span></td><td><div class="nv-actions"><button class="nv-button" type="button" data-page-target="builder">Edit</button><button class="nv-button nv-button-primary" type="button" data-page-target="assign">Assign</button></div></td></tr>
+                  <tr><td><strong>Heavy equipment 250 hr</strong><br><span class="nv-muted">Excavators and tracked equipment</span></td><td>Engine hours</td><td>5</td><td>9</td><td>Sep 10, 2026</td><td><span class="nv-status nv-active">Active</span></td><td><div class="nv-actions"><button class="nv-button" type="button">Edit</button><button class="nv-button nv-button-primary" type="button">Assign</button></div></td></tr>
+                  <tr><td><strong>Trailer inspections</strong><br><span class="nv-muted">Legacy draft</span></td><td>Mileage</td><td>2</td><td>0</td><td>Aug 29, 2026</td><td><span class="nv-status nv-upcoming">Draft</span></td><td><div class="nv-actions"><button class="nv-button" type="button">Edit</button><button class="nv-button" type="button">More</button></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="builder" hidden>
+          <div class="nv-page-head">
+            <div><h1>Profile builder</h1><p>Define the maintenance work and the meter interval for each item.</p></div>
+            <div class="nv-actions"><button class="nv-button" type="button" data-page-target="profiles">Cancel</button><button class="nv-button nv-button-primary" type="button" data-save-profile="true"><i data-lucide="save" aria-hidden="true"></i>Save profile</button></div>
+          </div>
+          <div class="nv-success" data-profile-success hidden>Profile saved as a new version. Existing asset schedules remain unchanged.</div>
+          <div class="nv-grid-2">
+            <div class="nv-panel">
+              <div class="nv-section-head"><h2>Profile details</h2><span class="nv-status nv-active">Active</span></div>
+              <div class="nv-form-grid">
+                <div class="nv-field nv-span-2"><label for="profile-name">Profile name</label><input id="profile-name" class="nv-input" value="Standard pickup service"></div>
+                <div class="nv-field"><label for="profile-unit">Meter unit</label><select id="profile-unit" class="nv-select"><option>Mileage</option><option>Engine hours</option></select><div class="nv-field-note">Only compatible assets can be assigned.</div></div>
+                <div class="nv-field"><label for="profile-status">Status</label><select id="profile-status" class="nv-select"><option>Active</option><option>Draft</option><option>Archived</option></select></div>
+                <div class="nv-field nv-span-2"><label for="profile-description">Description</label><textarea id="profile-description" class="nv-textarea" rows="2">Routine maintenance cycle for gasoline and diesel pickups.</textarea></div>
+              </div>
+              <hr>
+              <div class="nv-section-head"><h2>Maintenance items</h2><button class="nv-button" type="button" data-add-service="true"><i data-lucide="plus" aria-hidden="true"></i>Add maintenance</button></div>
+              <div data-services-list>
+                <div class="nv-service-row">
+                  <div class="nv-field"><label>Maintenance</label><select class="nv-select"><option>Oil &amp; filter change</option><option>Tire rotation</option><option>General inspection</option></select></div>
+                  <div class="nv-field"><label>Every</label><input class="nv-input" value="5,000"></div>
+                  <div class="nv-field"><label>Unit</label><select class="nv-select"><option>Miles</option></select></div>
+                  <div class="nv-field"><label>Warn before</label><input class="nv-input" value="500"></div>
+                  <button class="nv-icon-button" type="button" aria-label="Remove maintenance"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                </div>
+                <div class="nv-service-row">
+                  <div class="nv-field"><label>Maintenance</label><select class="nv-select"><option>Tire rotation</option><option>Oil &amp; filter change</option><option>General inspection</option></select></div>
+                  <div class="nv-field"><label>Every</label><input class="nv-input" value="7,500"></div>
+                  <div class="nv-field"><label>Unit</label><select class="nv-select"><option>Miles</option></select></div>
+                  <div class="nv-field"><label>Warn before</label><input class="nv-input" value="500"></div>
+                  <button class="nv-icon-button" type="button" aria-label="Remove maintenance"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                </div>
+                <div class="nv-service-row">
+                  <div class="nv-field"><label>Maintenance</label><select class="nv-select"><option>General inspection</option><option>Oil &amp; filter change</option><option>Tire rotation</option></select></div>
+                  <div class="nv-field"><label>Every</label><input class="nv-input" value="10,000"></div>
+                  <div class="nv-field"><label>Unit</label><select class="nv-select"><option>Miles</option></select></div>
+                  <div class="nv-field"><label>Warn before</label><input class="nv-input" value="1,000"></div>
+                  <button class="nv-icon-button" type="button" aria-label="Remove maintenance"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <aside class="nv-panel" data-guidance-panel>
+              <div class="nv-guidance"><strong>Version behavior</strong>Saving changes creates a new profile version. Active asset schedules keep their current rules until an administrator chooses to update them.</div>
+              <ul class="nv-bullets"><li>A profile uses one meter unit.</li><li>Intervals must be greater than the warning threshold.</li><li>Archived maintenance catalog items remain visible in historical records.</li><li>Duplicate maintenance items are prevented.</li></ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="individual" hidden>
+          <div class="nv-page-head">
+            <div><h1>Assign maintenance</h1><p>Schedule one maintenance without creating or changing a profile.</p></div>
+            <button class="nv-button" type="button" data-page-target="overview">Back to overview</button>
+          </div>
+          <div class="nv-success" data-individual-success hidden>Maintenance assigned. It now appears in the maintenance queue and on each selected asset.</div>
+          <div class="nv-grid-2">
+            <div class="nv-panel">
+              <div class="nv-section-head"><h2>Maintenance details</h2><span class="nv-status nv-upcoming">Individual</span></div>
+              <div class="nv-form-grid">
+                <div class="nv-field nv-span-2"><label for="individual-service">Maintenance</label><select id="individual-service" class="nv-select"><option>Hydraulic filter replacement</option><option>Oil &amp; filter change</option><option>Brake inspection</option><option>General inspection</option></select></div>
+                <div class="nv-field"><label for="individual-unit">Meter unit</label><select id="individual-unit" class="nv-select"><option>Engine hours</option><option>Mileage</option></select></div>
+                <div class="nv-field"><label for="individual-every">Repeat every</label><input id="individual-every" class="nv-input" type="number" min="1" value="250"><div class="nv-field-note">Hours after each completion</div></div>
+                <div class="nv-field"><label for="individual-warning">Warn before</label><input id="individual-warning" class="nv-input" type="number" min="0" value="25"><div class="nv-field-note">Hours before the due reading</div></div>
+                <div class="nv-field nv-span-2"><label for="individual-notes">Instructions</label><textarea id="individual-notes" class="nv-textarea" rows="2" placeholder="Optional work instructions"></textarea></div>
+              </div>
+            </div>
+            <aside class="nv-panel">
+              <div class="nv-section-head"><h2>Compatible assets</h2><span class="nv-muted">Engine hours</span></div>
+              <div class="nv-table-wrap"><table><thead><tr><th></th><th>Asset</th><th>Current meter</th></tr></thead><tbody>
+                <tr><td><input class="nv-check" type="checkbox" aria-label="Select EQ-208" checked></td><td><strong>EQ-208</strong><br><span class="nv-muted">CAT 320 Excavator</span></td><td class="nv-reading">2,238 hr</td></tr>
+                <tr><td><input class="nv-check" type="checkbox" aria-label="Select EQ-214" checked></td><td><strong>EQ-214</strong><br><span class="nv-muted">CAT 315 Excavator</span></td><td class="nv-reading">1,780 hr</td></tr>
+              </tbody></table></div>
+            </aside>
+          </div>
+          <div class="nv-panel" style="margin-top:16px">
+            <div class="nv-section-head"><h2>Starting point for each asset</h2><span class="nv-muted">Individual readings</span></div>
+            <div class="nv-table-wrap"><table><thead><tr><th>Asset</th><th>Start method</th><th>Reading</th><th>First due at</th></tr></thead><tbody>
+              <tr><td><strong>EQ-208</strong></td><td><select class="nv-select" aria-label="EQ-208 start method"><option>From current meter</option><option>From last maintenance</option><option>Set first due reading</option></select></td><td><input class="nv-input" aria-label="EQ-208 starting reading" value="2,238"></td><td class="nv-reading">2,488 hr</td></tr>
+              <tr><td><strong>EQ-214</strong></td><td><select class="nv-select" aria-label="EQ-214 start method"><option>From current meter</option><option>From last maintenance</option><option>Set first due reading</option></select></td><td><input class="nv-input" aria-label="EQ-214 starting reading" value="1,780"></td><td class="nv-reading">2,030 hr</td></tr>
+            </tbody></table></div>
+            <div class="nv-footer-actions"><button class="nv-button" type="button" data-page-target="overview">Cancel</button><button class="nv-button nv-button-primary" type="button" data-save-individual>Assign maintenance</button></div>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="assign" hidden>
+          <div class="nv-page-head"><div><h1>Assign “Standard pickup service”</h1><p>Select assets and decide where each maintenance cycle begins.</p></div></div>
+          <div class="nv-stepper" aria-label="Assignment steps">
+            <div class="nv-step is-active" data-step-label="1"><span class="nv-step-number">1</span><span>Select assets</span></div><div class="nv-step-line"></div>
+            <div class="nv-step" data-step-label="2"><span class="nv-step-number">2</span><span>Set starting point</span></div><div class="nv-step-line"></div>
+            <div class="nv-step" data-step-label="3"><span class="nv-step-number">3</span><span>Review</span></div>
+          </div>
+
+          <div class="nv-panel" data-assign-step="1">
+            <div class="nv-section-head"><h2>Compatible assets</h2><span class="nv-muted">Mileage categories only</span></div>
+            <div class="nv-filter-row"><input class="nv-input" placeholder="Search equipment, make, model or VIN" aria-label="Search compatible assets"><select class="nv-select" aria-label="Profile assignment"><option>Without this profile</option><option>All compatible assets</option></select></div>
+            <div class="nv-selection-summary"><strong><span data-selection-count>2</span> assets selected</strong><span>Readings are configured in the next step</span></div>
+            <div class="nv-table-wrap"><table><thead><tr><th><input class="nv-check" type="checkbox" aria-label="Select all assets"></th><th>Equipment</th><th>Asset</th><th>Category</th><th>Current meter</th><th>Location</th><th>Existing profile</th></tr></thead><tbody>
+              <tr><td><input class="nv-check" type="checkbox" data-asset-select checked></td><td><strong>BM-1042</strong></td><td>Ford F-250 · 2022</td><td>Pickup</td><td class="nv-reading">45,320 mi<span class="nv-reading-stale">Updated today · Linxup</span></td><td>Project 2407</td><td>None</td></tr>
+              <tr><td><input class="nv-check" type="checkbox" data-asset-select checked></td><td><strong>BM-1098</strong></td><td>Chevrolet Silverado · 2021</td><td>Pickup</td><td class="nv-reading">31,800 mi<span class="nv-reading-stale">Updated 2 days ago · Manual</span></td><td>Main warehouse</td><td>None</td></tr>
+              <tr><td><input class="nv-check" type="checkbox" data-asset-select></td><td><strong>BM-1103</strong></td><td>RAM 2500 · 2023</td><td>Pickup</td><td class="nv-reading">18,105 mi<span class="nv-reading-stale">Updated 18 days ago · Manual</span></td><td>Project 2411</td><td>None</td></tr>
+            </tbody></table></div>
+            <div class="nv-footer-actions"><button class="nv-button" type="button" data-page-target="profiles">Cancel</button><button class="nv-button nv-button-primary" type="button" data-next-step="2">Continue</button></div>
+          </div>
+
+          <div class="nv-panel" data-assign-step="2" hidden>
+            <div class="nv-section-head"><h2>Set starting point</h2><span class="nv-muted">Defaults can be adjusted per asset</span></div>
+            <div class="nv-bulk-controls">
+              <div class="nv-field"><label for="bulk-start-method">Apply to selected assets</label><select id="bulk-start-method" class="nv-select" data-bulk-method><option value="current">Start from current meter</option><option value="last">Use last maintenance reading</option><option value="due">Set first due reading</option></select></div>
+              <div class="nv-field"><label for="bulk-reading">Reading</label><input id="bulk-reading" class="nv-input" placeholder="Not required for current meter" disabled data-bulk-reading></div>
+              <button class="nv-button" type="button" data-apply-default>Apply default</button>
+            </div>
+            <div class="nv-table-wrap"><table><thead><tr><th>Asset</th><th>Current meter</th><th>Cycle starts from</th><th>Starting reading</th><th>First oil service</th></tr></thead><tbody>
+              <tr><td><strong>BM-1042</strong><br><span class="nv-muted">Ford F-250</span></td><td class="nv-reading">45,320 mi</td><td><select class="nv-select" data-row-method><option value="current">Current meter</option><option value="last">Last maintenance</option><option value="due">First due reading</option></select></td><td><input class="nv-input" value="45,320" data-row-reading disabled></td><td class="nv-reading" data-row-due>50,320 mi</td></tr>
+              <tr><td><strong>BM-1098</strong><br><span class="nv-muted">Chevrolet Silverado</span></td><td class="nv-reading">31,800 mi</td><td><select class="nv-select" data-row-method><option value="current">Current meter</option><option value="last">Last maintenance</option><option value="due">First due reading</option></select></td><td><input class="nv-input" value="31,800" data-row-reading disabled></td><td class="nv-reading" data-row-due>36,800 mi</td></tr>
+            </tbody></table></div>
+            <div class="nv-guidance" data-guidance-panel style="margin-top:14px"><strong>Recommended default</strong>“Current meter” starts a fresh cycle today. Use “Last maintenance” when you know the reading at which the previous service was performed.</div>
+            <div class="nv-footer-actions"><button class="nv-button" type="button" data-next-step="1">Back</button><button class="nv-button nv-button-primary" type="button" data-next-step="3">Review assignment</button></div>
+          </div>
+
+          <div class="nv-panel" data-assign-step="3" hidden>
+            <div class="nv-section-head"><h2>Review and activate</h2><span class="nv-status nv-active">Ready</span></div>
+            <div class="nv-review-list">
+              <div class="nv-review-row"><div><span>Profile</span><strong>Standard pickup service</strong></div><div><span>Version</span><strong>3 · Sep 21, 2026</strong></div><div><span>Meter unit</span><strong>Mileage</strong></div></div>
+              <div class="nv-review-row"><div><span>Selected assets</span><strong>2 assets</strong></div><div><span>Start method</span><strong>Current meter</strong></div><div><span>Maintenance items created</span><strong>6 schedules</strong></div></div>
+              <div class="nv-review-row"><div><span>BM-1042 first oil service</span><strong>50,320 mi</strong></div><div><span>BM-1098 first oil service</span><strong>36,800 mi</strong></div><div><span>Warning threshold</span><strong>500 mi before</strong></div></div>
+            </div>
+            <div class="nv-footer-actions"><button class="nv-button" type="button" data-next-step="2">Back</button><button class="nv-button nv-button-primary" type="button" data-activate-profile><i data-lucide="check" aria-hidden="true"></i>Activate for 2 assets</button></div>
+          </div>
+
+          <div class="nv-panel" data-assign-success hidden>
+            <div style="text-align:center;padding:38px 16px"><div class="nv-success-mark" style="margin:0 auto 14px"><i data-lucide="check" aria-hidden="true"></i></div><h2 style="margin:0 0 7px;font-size:20px;font-weight:500">Profile activated</h2><p class="nv-muted">Six maintenance schedules were created for two assets.</p><div class="nv-actions" style="justify-content:center;margin-top:16px"><button class="nv-button" type="button" data-page-target="profiles">Back to profiles</button><button class="nv-button nv-button-primary" type="button" data-page-target="overview">View maintenance queue</button></div></div>
+          </div>
+        </section>
+
+        <section class="nv-page" data-page="asset" hidden>
+          <div class="nv-asset-head">
+            <div class="nv-asset-id"><div class="nv-asset-icon"><i data-lucide="truck" aria-hidden="true"></i></div><div><h1>BM-1042 · Ford F-250</h1><p>Pickup · VIN 1FT7W2BT9NEC1042 · Project 2407</p></div></div>
+            <button class="nv-button" type="button"><i data-lucide="gauge" aria-hidden="true"></i>Update meter</button>
+          </div>
+          <div class="nv-success" data-complete-success hidden>Oil &amp; filter change completed at 45,320 mi. The next service is scheduled for 50,320 mi.</div>
+          <div class="nv-metrics">
+            <div class="nv-metric"><div class="nv-metric-label">Current meter</div><div class="nv-metric-value nv-reading">45,320 mi</div><div class="nv-metric-note">Updated today · Linxup</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Active profile</div><div class="nv-metric-value" style="font-size:17px">Standard pickup</div><div class="nv-metric-note">Version 3</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Next maintenance</div><div class="nv-metric-value nv-reading" style="font-size:20px">Now</div><div class="nv-metric-note">Oil &amp; filter change</div></div>
+            <div class="nv-metric"><div class="nv-metric-label">Schedule status</div><div style="margin-top:10px"><span class="nv-status nv-overdue">Overdue</span></div><div class="nv-metric-note">320 mi beyond target</div></div>
+          </div>
+          <div class="nv-grid-2">
+            <div class="nv-panel">
+              <div class="nv-section-head"><h2>Maintenance schedule</h2><button class="nv-button" type="button">Manage profile</button></div>
+              <div class="nv-schedule-card"><div class="nv-schedule-top"><strong>Oil &amp; filter change</strong><span class="nv-status nv-overdue">Overdue</span></div><div class="nv-progress-track"><div class="nv-progress-fill" style="width:100%;background:var(--nv-red)"></div></div><div class="nv-schedule-meta"><span>Every 5,000 mi</span><span>Due at 45,000 mi</span><span>Current 45,320 mi</span></div><button class="nv-button nv-button-primary" style="margin-top:11px" type="button" data-open-complete="true">Complete maintenance</button></div>
+              <div class="nv-schedule-card"><div class="nv-schedule-top"><strong>Tire rotation</strong><span class="nv-status nv-soon">Due soon</span></div><div class="nv-progress-track"><div class="nv-progress-fill" style="width:93%;background:var(--nv-orange)"></div></div><div class="nv-schedule-meta"><span>Every 7,500 mi</span><span>Due at 45,800 mi</span><span>480 mi remaining</span></div></div>
+              <div class="nv-schedule-card"><div class="nv-schedule-top"><strong>General inspection</strong><span class="nv-status nv-upcoming">Upcoming</span></div><div class="nv-progress-track"><div class="nv-progress-fill" style="width:53%"></div></div><div class="nv-schedule-meta"><span>Every 10,000 mi</span><span>Due at 50,800 mi</span><span>5,480 mi remaining</span></div></div>
+
+              <div class="nv-complete" data-complete-form hidden>
+                <div class="nv-section-head"><h2>Complete oil &amp; filter change</h2><button class="nv-icon-button" type="button" aria-label="Close form" data-close-complete><i data-lucide="x" aria-hidden="true"></i></button></div>
+                <div class="nv-form-grid">
+                  <div class="nv-field"><label for="completed-date">Completed on</label><input id="completed-date" class="nv-input" type="date" value="2026-09-21"></div>
+                  <div class="nv-field"><label for="completed-reading">Meter reading</label><input id="completed-reading" class="nv-input" value="45,320"></div>
+                  <div class="nv-field nv-span-2"><label for="completed-notes">Notes</label><textarea id="completed-notes" class="nv-textarea" rows="2" placeholder="Work performed, parts or observations"></textarea></div>
+                  <div class="nv-field nv-span-2"><label for="completed-file">Attachment</label><input id="completed-file" class="nv-input" type="file"></div>
+                </div>
+                <div class="nv-footer-actions"><button class="nv-button" type="button" data-close-complete>Cancel</button><button class="nv-button nv-button-primary" type="button" data-submit-complete>Complete and schedule next</button></div>
+              </div>
+            </div>
+            <aside class="nv-panel">
+              <div class="nv-section-head"><h2>Recent maintenance</h2><button class="nv-link" type="button">View all</button></div>
+              <div class="nv-review-list">
+                <div class="nv-review-row" style="grid-template-columns:1fr auto"><div><span>Oil &amp; filter change</span><strong>40,030 mi</strong><div class="nv-field-note">May 14, 2026 · Carlos M.</div></div><div><i data-lucide="paperclip" aria-hidden="true"></i></div></div>
+                <div class="nv-review-row" style="grid-template-columns:1fr auto"><div><span>Tire rotation</span><strong>38,300 mi</strong><div class="nv-field-note">Mar 27, 2026 · Patricia H.</div></div><div><i data-lucide="paperclip" aria-hidden="true"></i></div></div>
+                <div class="nv-review-row" style="grid-template-columns:1fr auto"><div><span>General inspection</span><strong>30,810 mi</strong><div class="nv-field-note">Oct 5, 2025 · Duncan R.</div></div><div></div></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const root = document.getElementById('novacor-maintenance-ux');
+    const state = { startPage: 'overview', compactTables: false, showGuidance: true };
+    const pageTitles = { movement: 'Asset Movement', overview: 'Maintenance overview', profiles: 'Maintenance profiles', builder: 'Profile builder', assign: 'Assign profile', individual: 'Assign maintenance', asset: 'Asset schedule' };
+
+    function showPage(page) {
+      root.querySelectorAll('[data-page]').forEach(section => { section.hidden = section.dataset.page !== page; });
+      root.querySelectorAll('.nv-nav-button[data-page-target]').forEach(button => {
+        if (button.dataset.pageTarget === page) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      root.querySelector('#nv-topbar-title').textContent = pageTitles[page] || 'Maintenance';
+      state.startPage = page;
+    }
+
+    function renderOptions() {
+      showPage(state.startPage);
+      root.classList.toggle('nv-dense', state.compactTables);
+      root.querySelectorAll('[data-guidance-panel]').forEach(panel => { panel.hidden = !state.showGuidance; });
+    }
+
+    root.addEventListener('click', event => {
+      const pageButton = event.target.closest('[data-page-target]');
+      if (pageButton) showPage(pageButton.dataset.pageTarget);
+
+      const stepButton = event.target.closest('[data-next-step]');
+      if (stepButton) {
+        const step = stepButton.dataset.nextStep;
+        root.querySelectorAll('[data-assign-step]').forEach(panel => { panel.hidden = panel.dataset.assignStep !== step; });
+        root.querySelectorAll('[data-step-label]').forEach(label => {
+          const value = Number(label.dataset.stepLabel);
+          label.classList.toggle('is-active', value === Number(step));
+          label.classList.toggle('is-done', value < Number(step));
+        });
+      }
+
+      if (event.target.closest('[data-activate-profile]')) {
+        root.querySelectorAll('[data-assign-step]').forEach(panel => { panel.hidden = true; });
+        root.querySelector('[data-assign-success]').hidden = false;
+      }
+
+      if (event.target.closest('[data-save-profile]')) {
+        const success = root.querySelector('[data-profile-success]');
+        success.hidden = false;
+        setTimeout(() => { success.hidden = true; }, 3200);
+      }
+
+      if (event.target.closest('[data-save-individual]')) {
+        root.querySelector('[data-individual-success]').hidden = false;
+      }
+
+      if (event.target.closest('[data-add-service]')) {
+        const row = document.createElement('div');
+        row.className = 'nv-service-row';
+        row.innerHTML = '<div class="nv-field"><label>Maintenance</label><select class="nv-select"><option>Transmission service</option><option>Brake inspection</option></select></div><div class="nv-field"><label>Every</label><input class="nv-input" value="30,000"></div><div class="nv-field"><label>Unit</label><select class="nv-select"><option>Miles</option></select></div><div class="nv-field"><label>Warn before</label><input class="nv-input" value="1,000"></div><button class="nv-icon-button" type="button" aria-label="Remove maintenance"><i data-lucide="trash-2" aria-hidden="true"></i></button>';
+        root.querySelector('[data-services-list]').appendChild(row);
+        if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+
+      const removeButton = event.target.closest('.nv-icon-button');
+      if (removeButton && removeButton.closest('.nv-service-row')) removeButton.closest('.nv-service-row').remove();
+
+      if (event.target.closest('[data-open-complete]')) {
+        showPage('asset');
+        root.querySelector('[data-complete-form]').hidden = false;
+      }
+      if (event.target.closest('[data-close-complete]')) root.querySelector('[data-complete-form]').hidden = true;
+      if (event.target.closest('[data-submit-complete]')) {
+        root.querySelector('[data-complete-form]').hidden = true;
+        root.querySelector('[data-complete-success]').hidden = false;
+      }
+
+      if (event.target.closest('[data-apply-default]')) {
+        const method = root.querySelector('[data-bulk-method]').value;
+        root.querySelectorAll('[data-row-method]').forEach(select => {
+          select.value = method;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+      }
+    });
+
+    root.addEventListener('change', event => {
+      if (event.target.matches('[data-asset-select]')) {
+        root.querySelector('[data-selection-count]').textContent = root.querySelectorAll('[data-asset-select]:checked').length;
+      }
+      if (event.target.matches('[data-bulk-method]')) {
+        root.querySelector('[data-bulk-reading]').disabled = event.target.value === 'current';
+      }
+      if (event.target.matches('[data-row-method]')) {
+        const row = event.target.closest('tr');
+        const input = row.querySelector('[data-row-reading]');
+        input.disabled = event.target.value === 'current';
+        row.querySelector('[data-row-due]').textContent = event.target.value === 'due' ? 'Uses entered due reading' : 'Recalculated from reading';
+      }
+    });
+
+    renderOptions();
+
+    if (globalThis.Tweak) {
+      const tweak = new Tweak({ container: root, onChange: renderOptions });
+      tweak.addSelect(state, 'startPage', { label: 'Preview screen', options: [
+        { label: 'Asset Movement', value: 'movement' },
+        { label: 'Overview', value: 'overview' },
+        { label: 'Profiles', value: 'profiles' },
+        { label: 'Profile builder', value: 'builder' },
+        { label: 'Assign assets', value: 'assign' },
+        { label: 'Assign maintenance', value: 'individual' },
+        { label: 'Asset schedule', value: 'asset' }
+      ], reference: 'maintenance.startPage' });
+      tweak.addToggle(state, 'compactTables', { label: 'Compact tables', reference: 'maintenance.compactTables' });
+      tweak.addToggle(state, 'showGuidance', { label: 'Show guidance', reference: 'maintenance.showGuidance' });
+    }
+  })();
+</script>
